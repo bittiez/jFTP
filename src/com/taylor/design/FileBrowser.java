@@ -5,6 +5,7 @@ import it.sauronsoftware.ftp4j.*;
 
 import javax.swing.*;
 import java.awt.*;
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -17,10 +18,20 @@ public class FileBrowser {
     private JFrame frame;
     private FTPHandler FTP;
     private ArrayList<JPanel> panelList;
+    private String initialDirectory;
 
 
     public FileBrowser(FTPHandler _FTP) {
         FTP = _FTP;
+        try {
+            initialDirectory = FTP.getCurrentDirectory();
+        } catch (FTPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FTPIllegalReplyException e) {
+            e.printStackTrace();
+        }
         panelList = new ArrayList<JPanel>();
 
         frame = new JFrame("jFTP File Browser");
@@ -34,8 +45,8 @@ public class FileBrowser {
         //--scrollPane
         //   --contentPanel
 
-        contentPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
-
+        //contentPanel.setLayout(new WrapLayout(WrapLayout.LEFT));
+        contentPanel.setLayout(new GridLayout(0, 5));
         listFiles();
 
         frame.pack();
@@ -44,6 +55,7 @@ public class FileBrowser {
 
     public void listFiles(){
         panelList.clear();
+        contentPanel.removeAll();
         FTPFile[] list = null;
         try {
             list = FTP.listFiles();
@@ -51,8 +63,9 @@ public class FileBrowser {
             e.printStackTrace();
         }
 
+
         for(FTPFile file : list){
-            FileObject fileObjectPanel = new FileObject(file);
+            FileObject fileObjectPanel = new FileObject(file, this);
             panelList.add(fileObjectPanel);
             contentPanel.add(fileObjectPanel);
         }
@@ -60,7 +73,16 @@ public class FileBrowser {
         mainPanel.updateUI();
     }
 
-    public void changeDir(){
-
+    public void changeDir(String dir){
+        try {
+            FTP.changeDirectory(dir);
+            listFiles();
+        } catch (FTPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FTPIllegalReplyException e) {
+            e.printStackTrace();
+        }
     }
 }
