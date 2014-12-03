@@ -15,14 +15,10 @@ public class fileObject extends JPanel {
     private ImageIcon Icon;
     private int FileType;
     private final int IconSize = 25;
-    private final Dimension panelSize = new Dimension(150, 40);
 
     public fileObject(FTPFile FILE){
         file = FILE;
         FileType = file.getType();
-        this.setSize(panelSize);
-        this.setPreferredSize(panelSize);
-        this.setMinimumSize(panelSize);
         this.setLayout(new WrapLayout());
 
         switch (FileType){
