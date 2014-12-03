@@ -13,9 +13,11 @@ import java.util.ArrayList;
 public class FileBrowser {
     private JPanel mainPanel;
     private JScrollPane scrollPane;
+    private JPanel contentPanel;
     private JFrame frame;
     private FTPHandler FTP;
     private ArrayList<JPanel> panelList;
+
 
     public FileBrowser(FTPHandler _FTP) {
         FTP = _FTP;
@@ -28,7 +30,11 @@ public class FileBrowser {
         frame.setSize(frame.getPreferredSize());
         frame.setMinimumSize(frame.getSize());
 
-        mainPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
+        //mainPanel
+        //--scrollPane
+        //   --contentPanel
+
+        contentPanel.setLayout(new FlowLayout(FlowLayout.LEFT));
 
         listFiles();
 
@@ -48,10 +54,10 @@ public class FileBrowser {
         for(FTPFile file : list){
             FileObject fileObjectPanel = new FileObject(file);
             panelList.add(fileObjectPanel);
-            scrollPane.add(fileObjectPanel);
+            contentPanel.add(fileObjectPanel);
         }
 
-        scrollPane.updateUI();
+        mainPanel.updateUI();
     }
 
     public void changeDir(){
