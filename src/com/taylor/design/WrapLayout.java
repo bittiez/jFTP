@@ -1,4 +1,4 @@
-package com.taylor;
+package com.taylor.design;
 
 import java.awt.Component;
 import java.awt.Container;

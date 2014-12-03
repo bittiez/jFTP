@@ -1,17 +1,17 @@
-package com.taylor;
+package com.taylor.helper;
 
 import it.sauronsoftware.ftp4j.*;
 
 import java.io.File;
 import java.io.IOException;
 
-public class ftpHandler {
+public class FTPHandler {
     public FTPClient client;
 
-    public ftpHandler() throws FTPException, IOException, FTPIllegalReplyException {
+    public FTPHandler() throws FTPException, IOException, FTPIllegalReplyException {
         client = new FTPClient();
         client.connect("ftp.zul.pw");
-        client.login("zul@uokiru.com", "ubt7smh8");
+        client.login("zul@uokiru.com", "password");
     }
 
     public void uploadFile(File LOCALFILE) throws FTPException, IOException, FTPDataTransferException, FTPIllegalReplyException, FTPAbortedException {
@@ -54,7 +54,7 @@ public class ftpHandler {
         return client.currentDirectory();
     }
 
-    public void Disconnect() throws FTPException, IOException, FTPIllegalReplyException {
+    public void disconnect() throws FTPException, IOException, FTPIllegalReplyException {
         client.disconnect(true);
     }
 }

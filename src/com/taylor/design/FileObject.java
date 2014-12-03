@@ -1,5 +1,6 @@
-package com.taylor;
+package com.taylor.design;
 
+import com.taylor.design.WrapLayout;
 import it.sauronsoftware.ftp4j.FTPFile;
 
 import javax.swing.*;
@@ -9,14 +10,14 @@ import java.awt.image.BufferedImage;
 /**
  * Created by tad on 12/3/2014.
  */
-public class fileObject extends JPanel {
+public class FileObject extends JPanel {
     private FTPFile file;
     private JLabel label;
     private ImageIcon icon;
     private int fileType;
     private final int iconSize = 25;
 
-    public fileObject(FTPFile FILE){
+    public FileObject(FTPFile FILE){
         file = FILE;
         fileType = file.getType();
         this.setLayout(new WrapLayout());

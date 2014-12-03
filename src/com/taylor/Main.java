@@ -1,6 +1,7 @@
 package com.taylor;
 
-import com.taylor.gui.browser;
+import com.taylor.design.FileBrowser;
+import com.taylor.helper.FTPHandler;
 import it.sauronsoftware.ftp4j.FTPException;
 import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
@@ -14,10 +15,10 @@ public class Main {
 
 
 
-    public ftpHandler FTP;
+    public FTPHandler FTP;
     public Main(){
         try {
-            FTP = new ftpHandler();
+            FTP = new FTPHandler();
         } catch (FTPException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -28,7 +29,7 @@ public class Main {
 
         if(FTP == null)
             System.exit(1);
-        browser GUI = new browser(FTP);
+        FileBrowser GUI = new FileBrowser(FTP);
 
 
     }
