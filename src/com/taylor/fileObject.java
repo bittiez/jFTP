@@ -11,34 +11,34 @@ import java.awt.image.BufferedImage;
  */
 public class fileObject extends JPanel {
     private FTPFile file;
-    private JLabel Label;
-    private ImageIcon Icon;
-    private int FileType;
-    private final int IconSize = 25;
+    private JLabel label;
+    private ImageIcon icon;
+    private int fileType;
+    private final int iconSize = 25;
 
     public fileObject(FTPFile FILE){
         file = FILE;
-        FileType = file.getType();
+        fileType = file.getType();
         this.setLayout(new WrapLayout());
 
-        switch (FileType){
+        switch (fileType){
             case FTPFile.TYPE_DIRECTORY:
-                Icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/folder.png")),IconSize);
+                icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/folder.png")), iconSize);
                 break;
             case FTPFile.TYPE_FILE:
                 try {
                     String FileExtension = file.getName().substring(file.getName().lastIndexOf(".")+1);
-                    Icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/"+FileExtension+".png")),IconSize);
+                    icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/"+FileExtension+".png")), iconSize);
                 } catch(Exception e) {
-                    Icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/_blank.png")),IconSize);
+                    icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/_blank.png")), iconSize);
                 }
                 break;
             case FTPFile.TYPE_LINK:
-                Icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/_page.png")),IconSize);
+                icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/_page.png")), iconSize);
                 break;
         }
-        Label = new JLabel(file.getName(), Icon, JLabel.LEFT);
-        this.add(Label);
+        label = new JLabel(file.getName(), icon, JLabel.LEFT);
+        this.add(label);
 
     }
 
