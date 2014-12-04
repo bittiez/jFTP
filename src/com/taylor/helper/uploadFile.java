@@ -1,12 +1,10 @@
 package com.taylor.helper;
 
 import com.taylor.design.WrapLayout;
-import it.sauronsoftware.ftp4j.*;
 
 import javax.swing.*;
 import java.awt.*;
 import java.io.File;
-import java.io.IOException;
 
 public class uploadFile implements Runnable {
     private FTPHandler FTP;
