@@ -6,6 +6,7 @@ import it.sauronsoftware.ftp4j.*;
 import javax.swing.*;
 import java.awt.*;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -15,8 +16,8 @@ public class FileBrowser {
     private JPanel mainPanel;
     private JScrollPane scrollPane;
     private JPanel contentPanel;
-    private JFrame frame;
-    private FTPHandler FTP;
+    public JFrame frame;
+    public FTPHandler FTP;
     private ArrayList<JPanel> panelList;
     private String initialDirectory;
 
@@ -37,16 +38,18 @@ public class FileBrowser {
         frame = new JFrame("jFTP File Browser");
         frame.setContentPane(mainPanel);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.setPreferredSize(new Dimension(750, 500));
+        frame.setPreferredSize(new Dimension(750, 515));
         frame.setSize(frame.getPreferredSize());
-        frame.setMinimumSize(frame.getSize());
+        //frame.setMinimumSize(frame.getSize());
 
         //mainPanel
         //--scrollPane
         //   --contentPanel
 
-        //contentPanel.setLayout(new WrapLayout(WrapLayout.LEFT));
-        contentPanel.setLayout(new GridLayout(0, 5));
+        GridLayout GL = new GridLayout();
+        GL.setColumns(3);
+        GL.setRows(0);
+        contentPanel.setLayout(GL);
         listFiles();
 
         frame.pack();
@@ -62,7 +65,21 @@ public class FileBrowser {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        list = sortList(list);
 
+        try {
+            if(!FTP.getCurrentDirectory().equals(initialDirectory)){
+                FileObject fileObjectDir = new FileObject(this);
+                panelList.add(fileObjectDir);
+                contentPanel.add((fileObjectDir));
+            }
+        } catch (FTPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FTPIllegalReplyException e) {
+            e.printStackTrace();
+        }
 
         for(FTPFile file : list){
             FileObject fileObjectPanel = new FileObject(file, this);
@@ -71,6 +88,46 @@ public class FileBrowser {
         }
 
         mainPanel.updateUI();
+    }
+
+    private FTPFile[] sortList(FTPFile[] sortMe) {
+        ArrayList<FTPFile> dir = new ArrayList<FTPFile>();
+        ArrayList<FTPFile> file = new ArrayList<FTPFile>();
+        ArrayList<FTPFile> combine = new ArrayList<FTPFile>();
+
+
+        for (FTPFile filez : sortMe) {
+            switch (filez.getType()) {
+                case FTPFile.TYPE_FILE:
+                    file.add(filez);
+                    break;
+                case FTPFile.TYPE_DIRECTORY:
+                    dir.add(filez);
+                    break;
+            }
+        }
+        for(FTPFile filez : dir){
+            combine.add(filez);
+        }
+        for(FTPFile filez : file){
+            combine.add(filez);
+        }
+        FTPFile[] fa = new FTPFile[combine.size()];
+        return combine.toArray(fa);
+
+    }
+
+    public void changeDirectoryUp(){
+        try {
+            FTP.changeDirectoryUp();
+            listFiles();
+        } catch (FTPException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        } catch (FTPIllegalReplyException e) {
+            e.printStackTrace();
+        }
     }
 
     public void changeDir(String dir){

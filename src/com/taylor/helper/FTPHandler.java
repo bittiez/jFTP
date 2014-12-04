@@ -11,7 +11,11 @@ public class FTPHandler {
     public FTPHandler() throws FTPException, IOException, FTPIllegalReplyException {
         client = new FTPClient();
         client.connect("ftp.zul.pw");
-        client.login("zul@uokiru.com", "password");
+        client.login("zul@uokiru.com", "pmy6vw2");
+    }
+
+    public void changeDirectoryUp() throws FTPException, IOException, FTPIllegalReplyException {
+        client.changeDirectoryUp();
     }
 
     public void uploadFile(File LOCALFILE) throws FTPException, IOException, FTPDataTransferException, FTPIllegalReplyException, FTPAbortedException {

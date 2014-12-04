@@ -1,13 +1,16 @@
 package com.taylor.design;
 
 import com.taylor.design.WrapLayout;
+import com.taylor.helper.fileDownload;
 import it.sauronsoftware.ftp4j.FTPFile;
+import javafx.stage.DirectoryChooser;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
 
 /**
  * Created by tad on 12/3/2014.
@@ -19,11 +22,54 @@ public class FileObject extends JPanel {
     private int fileType;
     private final int iconSize = 25;
     private FileBrowser fileBrowser;
+    private Color backgroundColor;
+
+
+    public FileObject(FileBrowser FILEBROWSER){
+        fileBrowser = FILEBROWSER;
+        fileType = FTPFile.TYPE_DIRECTORY;
+        this.setLayout(new WrapLayout());
+        icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/folder.png")), iconSize);
+        label = new JLabel("<-- Back", icon, JLabel.LEFT);
+        label.setHorizontalTextPosition(JLabel.CENTER);
+        label.setVerticalTextPosition(JLabel.BOTTOM);
+
+        label.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                if(e.getClickCount() > 1){
+                    if(fileType == FTPFile.TYPE_DIRECTORY){
+                        fileBrowser.changeDirectoryUp();
+                    }
+                }
+                super.mouseClicked(e);
+            }
+
+            @Override
+            public void mouseEntered(MouseEvent e) {
+                label.setBorder(BorderFactory.createDashedBorder(Color.gray));
+                super.mouseEntered(e);
+            }
+
+            @Override
+            public void mouseExited(MouseEvent e) {
+                label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
+                super.mouseExited(e);
+            }
+        });
+
+
+        this.add(label);
+
+    }
 
     public FileObject(FTPFile FILE, FileBrowser FILEBROWSER){
+
         file = FILE;
         fileBrowser = FILEBROWSER;
         fileType = file.getType();
+        backgroundColor = FILEBROWSER.frame.getBackground();
+
         this.setLayout(new WrapLayout());
 
         switch (fileType){
@@ -45,6 +91,7 @@ public class FileObject extends JPanel {
         label = new JLabel(file.getName(), icon, JLabel.LEFT);
         label.setHorizontalTextPosition(JLabel.CENTER);
         label.setVerticalTextPosition(JLabel.BOTTOM);
+        label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
 
 
         label.addMouseListener(new MouseAdapter() {
@@ -53,6 +100,16 @@ public class FileObject extends JPanel {
                 if(e.getClickCount() > 1){
                     if(fileType == FTPFile.TYPE_DIRECTORY){
                         fileBrowser.changeDir(file.getName());
+                    } else if(fileType == FTPFile.TYPE_FILE){
+                        JFileChooser saveFile = new JFileChooser();
+                        saveFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
+                        saveFile.setDialogType(JFileChooser.DIRECTORIES_ONLY);
+                        saveFile.setName("Where would you like to save this file?");
+                        int sf  = saveFile.showSaveDialog(null);
+                        if(sf == JFileChooser.APPROVE_OPTION) {
+                            Thread t = new Thread(new fileDownload(fileBrowser.FTP, file, saveFile.getSelectedFile().getAbsolutePath()));
+                            t.start();
+                        }
                     }
                 }
                 super.mouseClicked(e);
@@ -66,7 +123,7 @@ public class FileObject extends JPanel {
 
             @Override
             public void mouseExited(MouseEvent e) {
-                label.setBorder(BorderFactory.createEmptyBorder());
+                label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
                 super.mouseExited(e);
             }
         });
