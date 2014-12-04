@@ -1,7 +1,9 @@
 package com.taylor.design;
 
+import com.taylor.helper.FileRightClickMenu;
 import com.taylor.helper.fileDownload;
 import it.sauronsoftware.ftp4j.FTPFile;
+import javafx.scene.input.MouseButton;
 
 import javax.swing.*;
 import java.awt.*;
@@ -17,6 +19,7 @@ public class FileObject extends JPanel {
     private final int iconSize = 25;
     private FileBrowser fileBrowser;
     private Color backgroundColor;
+    private FileRightClickMenu menu = new FileRightClickMenu();
 
 
     public FileObject(FileBrowser FILEBROWSER) {
@@ -29,26 +32,24 @@ public class FileObject extends JPanel {
         label.setVerticalTextPosition(JLabel.BOTTOM);
 
         label.addMouseListener(new MouseAdapter() {
+
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() > 1) {
+                if (e.getClickCount() > 1 && SwingUtilities.isLeftMouseButton(e)) {
                     if (fileType == FTPFile.TYPE_DIRECTORY) {
                         fileBrowser.changeDirectoryUp();
                     }
                 }
-                super.mouseClicked(e);
             }
 
             @Override
             public void mouseEntered(MouseEvent e) {
                 label.setBorder(BorderFactory.createDashedBorder(Color.gray));
-                super.mouseEntered(e);
             }
 
             @Override
             public void mouseExited(MouseEvent e) {
                 label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
-                super.mouseExited(e);
             }
         });
 
@@ -91,7 +92,7 @@ public class FileObject extends JPanel {
         label.addMouseListener(new MouseAdapter() {
             @Override
             public void mouseClicked(MouseEvent e) {
-                if (e.getClickCount() > 1) {
+                if (e.getClickCount() > 1 && SwingUtilities.isLeftMouseButton(e)) {
                     if (fileType == FTPFile.TYPE_DIRECTORY) {
                         fileBrowser.changeDir(file.getName());
                     } else if (fileType == FTPFile.TYPE_FILE) {
@@ -106,7 +107,17 @@ public class FileObject extends JPanel {
                         }
                     }
                 }
-                super.mouseClicked(e);
+            }
+
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                maybeShowPopup(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                maybeShowPopup(e);
             }
 
             @Override
@@ -125,6 +136,13 @@ public class FileObject extends JPanel {
 
         this.add(label);
 
+    }
+
+    private void maybeShowPopup(MouseEvent e) {
+        if (e.isPopupTrigger()) {
+            menu.show(e.getComponent(),
+                    e.getX(), e.getY());
+        }
     }
 
     private ImageIcon resizeImage(ImageIcon II, int Size) {
