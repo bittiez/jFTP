@@ -14,11 +14,11 @@ public class Main {
     }
 
 
-
+    public FileBrowser GUI = null;
     public FTPHandler FTP;
     public Main(){
         try {
-            FTP = new FTPHandler();
+            FTP = new FTPHandler(GUI);
         } catch (FTPException e) {
             e.printStackTrace();
         } catch (IOException e) {
@@ -29,7 +29,7 @@ public class Main {
 
         if(FTP == null)
             System.exit(1);
-        FileBrowser GUI = new FileBrowser(FTP);
+        GUI = new FileBrowser(FTP);
 
 
     }

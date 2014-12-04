@@ -1,5 +1,6 @@
 package com.taylor.helper;
 
+import com.taylor.design.FileBrowser;
 import it.sauronsoftware.ftp4j.*;
 
 import java.io.File;
@@ -7,11 +8,13 @@ import java.io.IOException;
 
 public class FTPHandler {
     public FTPClient client;
+    public FileBrowser GUI;
 
-    public FTPHandler() throws FTPException, IOException, FTPIllegalReplyException {
+    public FTPHandler(FileBrowser _GUI) throws FTPException, IOException, FTPIllegalReplyException {
         client = new FTPClient();
         client.connect("ftp.zul.pw");
         client.login("zul@uokiru.com", "pmy6vw2");
+        GUI = _GUI;
     }
 
     public void changeDirectoryUp() throws FTPException, IOException, FTPIllegalReplyException {

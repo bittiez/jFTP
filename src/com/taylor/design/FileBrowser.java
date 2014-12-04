@@ -1,12 +1,15 @@
 package com.taylor.design;
 
 import com.taylor.helper.FTPHandler;
-import it.sauronsoftware.ftp4j.*;
+import com.taylor.helper.ToTransferHandler;
+import it.sauronsoftware.ftp4j.FTPException;
+import it.sauronsoftware.ftp4j.FTPFile;
+import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.dnd.DropTarget;
 import java.io.IOException;
-import java.lang.reflect.Array;
 import java.util.ArrayList;
 
 /**
@@ -50,6 +53,13 @@ public class FileBrowser {
         GL.setColumns(3);
         GL.setRows(0);
         contentPanel.setLayout(GL);
+
+        // Create the drag and drop listener
+        ToTransferHandler myDragDropListener = new ToTransferHandler(FTP);
+
+        // Connect the label with a drag and drop listener
+        new DropTarget(contentPanel, myDragDropListener);
+
         listFiles();
 
         frame.pack();
