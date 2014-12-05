@@ -2,14 +2,18 @@ package com.taylor.design;
 
 import com.taylor.helper.FileRightClickMenu;
 import com.taylor.helper.fileDownload;
+import it.sauronsoftware.ftp4j.FTPException;
 import it.sauronsoftware.ftp4j.FTPFile;
-import javafx.scene.input.MouseButton;
+import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Paths;
 
 public class FileObject extends JPanel {
     private FTPFile file;
@@ -17,15 +21,16 @@ public class FileObject extends JPanel {
     private ImageIcon icon;
     private int fileType;
     private final int iconSize = 25;
-    private FileBrowser fileBrowser;
+    public FileBrowser fileBrowser;
     private Color backgroundColor;
-    private FileRightClickMenu menu = new FileRightClickMenu();
 
 
     public FileObject(FileBrowser FILEBROWSER) {
         fileBrowser = FILEBROWSER;
         fileType = FTPFile.TYPE_DIRECTORY;
         this.setLayout(new WrapLayout());
+
+
         icon = resizeImage(new ImageIcon(getClass().getResource("/com/taylor/48px/folder.png")), iconSize);
         label = new JLabel("<-- Back", icon, JLabel.LEFT);
         label.setHorizontalTextPosition(JLabel.CENTER);
@@ -43,6 +48,16 @@ public class FileObject extends JPanel {
             }
 
             @Override
+            public void mousePressed(MouseEvent e) {
+                maybeShowPopup(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                maybeShowPopup(e);
+            }
+
+            @Override
             public void mouseEntered(MouseEvent e) {
                 label.setBorder(BorderFactory.createDashedBorder(Color.gray));
             }
@@ -50,6 +65,14 @@ public class FileObject extends JPanel {
             @Override
             public void mouseExited(MouseEvent e) {
                 label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
+            }
+
+            private void maybeShowPopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    FileRightClickMenu menu = new FileRightClickMenu(FileObject.this);
+                    menu.show(e.getComponent(),
+                            e.getX(), e.getY());
+                }
             }
         });
 
@@ -131,6 +154,14 @@ public class FileObject extends JPanel {
                 label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
                 super.mouseExited(e);
             }
+
+            private void maybeShowPopup(MouseEvent e) {
+                if (e.isPopupTrigger()) {
+                    FileRightClickMenu menu = new FileRightClickMenu(FileObject.this);
+                    menu.show(e.getComponent(),
+                            e.getX(), e.getY());
+                }
+            }
         });
 
 
@@ -138,12 +169,21 @@ public class FileObject extends JPanel {
 
     }
 
-    private void maybeShowPopup(MouseEvent e) {
-        if (e.isPopupTrigger()) {
-            menu.show(e.getComponent(),
-                    e.getX(), e.getY());
+    public void deleteFile(){
+        try {
+            //String path = Paths.get(fileBrowser.FTP.getCurrentDirectory(), file.getName()).toString().replace("\\", "/");
+            String path = file.getName();
+            //System.out.println(path);
+            if(fileType == FTPFile.TYPE_FILE)
+                fileBrowser.FTP.deleteFile(path);
+            else if(fileType == FTPFile.TYPE_DIRECTORY)
+                fileBrowser.FTP.deleteDirectory(path);
+        } catch (Exception e) {
+            e.printStackTrace();
         }
+        fileBrowser.listFiles();
     }
+
 
     private ImageIcon resizeImage(ImageIcon II, int Size) {
         Image img = II.getImage();
