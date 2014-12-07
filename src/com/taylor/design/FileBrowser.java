@@ -3,6 +3,7 @@ package com.taylor.design;
 import com.taylor.helper.FTPHandler;
 import com.taylor.helper.FileListLoader;
 import com.taylor.helper.ToTransferHandler;
+import com.taylor.manager.FileAndDirectoryManager;
 import it.sauronsoftware.ftp4j.FTPException;
 import it.sauronsoftware.ftp4j.FTPFile;
 import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
@@ -27,6 +28,8 @@ public class FileBrowser {
     private String baseTitle = "jFTP";
     private JLabel loadingLabel = new JLabel(new ImageIcon(getClass().getResource("/com/taylor/48px/ajax_loader_orange_64.gif")));
     private FileListLoader FLL;
+    private FileAndDirectoryManager fileAndDirectoryManager;
+    public String currentDirectory;
 
 
     public FileBrowser() {
@@ -38,6 +41,7 @@ public class FileBrowser {
             e.printStackTrace();
         }
 
+
         if(FTP == null)
             System.exit(1);
 
@@ -47,6 +51,11 @@ public class FileBrowser {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        currentDirectory = initialDirectory;
+        fileAndDirectoryManager = new FileAndDirectoryManager(FTP);
+        Thread t = new Thread(fileAndDirectoryManager);
+        t.start();
+
         panelList = new ArrayList<JPanel>();
 
 
@@ -83,7 +92,8 @@ public class FileBrowser {
 
         contentPanel.add(loadingLabel);
         contentPanel.updateUI();
-        FLL = new FileListLoader(FTP);
+
+        FLL = new FileListLoader(FTP, fileAndDirectoryManager, currentDirectory.toString());
 
         Thread t = new Thread(FLL);
         t.start();
@@ -93,6 +103,7 @@ public class FileBrowser {
         try {
             FTP.changeDirectoryUp();
             frame.setTitle(baseTitle + " " + FTP.getCurrentDirectory());
+            currentDirectory = FTP.getCurrentDirectory();
             listFiles();
         } catch (FTPException e) {
             e.printStackTrace();
@@ -104,16 +115,9 @@ public class FileBrowser {
     }
 
     public void changeDir(String dir){
-        try {
-            FTP.changeDirectory(dir);
-            frame.setTitle(baseTitle + " " + FTP.getCurrentDirectory());
+            //FTP.changeDirectory(dir);
+            frame.setTitle(baseTitle + " " + dir);
+            currentDirectory = dir;
             listFiles();
-        } catch (FTPException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (FTPIllegalReplyException e) {
-            e.printStackTrace();
-        }
     }
 }

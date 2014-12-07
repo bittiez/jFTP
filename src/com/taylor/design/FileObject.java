@@ -1,18 +1,14 @@
 package com.taylor.design;
 
 import com.taylor.helper.FileRightClickMenu;
-import com.taylor.helper.fileDownload;
-import it.sauronsoftware.ftp4j.FTPException;
+import com.taylor.helper.FileDownload;
 import it.sauronsoftware.ftp4j.FTPFile;
-import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
 import java.nio.file.Paths;
 
 public class FileObject extends JPanel {
@@ -23,9 +19,11 @@ public class FileObject extends JPanel {
     private final int iconSize = 25;
     public FileBrowser fileBrowser;
     private Color backgroundColor;
+    private String Directory;
 
 
-    public FileObject(FileBrowser FILEBROWSER) {
+    public FileObject(FileBrowser FILEBROWSER, String DIRECTORY) {
+        Directory = DIRECTORY;
         fileBrowser = FILEBROWSER;
         fileType = FTPFile.TYPE_DIRECTORY;
         this.setLayout(new WrapLayout());
@@ -41,9 +39,14 @@ public class FileObject extends JPanel {
             @Override
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() > 1 && SwingUtilities.isLeftMouseButton(e)) {
-                    if (fileType == FTPFile.TYPE_DIRECTORY) {
-                        fileBrowser.changeDirectoryUp();
-                    }
+                    String upDir = getFullPath().substring(0, getFullPath().lastIndexOf("/") + 1);
+                    if(upDir.isEmpty())
+                        upDir = fileBrowser.initialDirectory;
+                    if(upDir.length() > 1 && upDir.charAt(upDir.length()-1) == "/".toCharArray()[0])
+                        upDir = upDir.substring(0, upDir.length() - 1);
+
+                    //System.out.println(upDir);
+                    fileBrowser.changeDir(upDir);
                 }
             }
 
@@ -81,8 +84,8 @@ public class FileObject extends JPanel {
 
     }
 
-    public FileObject(FTPFile FILE, FileBrowser FILEBROWSER) {
-
+    public FileObject(FTPFile FILE, FileBrowser FILEBROWSER, String DIRECTORY) {
+        Directory = DIRECTORY;
         file = FILE;
         fileBrowser = FILEBROWSER;
         fileType = file.getType();
@@ -117,7 +120,7 @@ public class FileObject extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() > 1 && SwingUtilities.isLeftMouseButton(e)) {
                     if (fileType == FTPFile.TYPE_DIRECTORY) {
-                        fileBrowser.changeDir(file.getName());
+                        fileBrowser.changeDir(getFullPath());
                     } else if (fileType == FTPFile.TYPE_FILE) {
                         JFileChooser saveFile = new JFileChooser();
                         saveFile.setFileSelectionMode(JFileChooser.DIRECTORIES_ONLY);
@@ -125,8 +128,8 @@ public class FileObject extends JPanel {
                         saveFile.setName("Where would you like to save this file?");
                         int sf = saveFile.showSaveDialog(null);
                         if (sf == JFileChooser.APPROVE_OPTION) {
-                            Thread t = new Thread(new fileDownload(fileBrowser.FTP, file, saveFile.getSelectedFile().getAbsolutePath()));
-                            t.start();
+                            //Thread t = new Thread(new FileDownload(fileBrowser.FTP, file, saveFile.getSelectedFile().getAbsolutePath()));
+                            //t.start();
                         }
                     }
                 }
@@ -167,6 +170,18 @@ public class FileObject extends JPanel {
 
         this.add(label);
 
+    }
+
+    public String getFullPath(){
+        String ret;
+        if(file != null)
+            ret = Directory + "/" + file.getName();
+        else
+            ret = Directory;
+        while(ret.contains("\\"))
+            ret = ret.replace("\\", "/");
+        ret = ret.replaceAll("//", "/");
+        return ret;
     }
 
     public void deleteFile(){

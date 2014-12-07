@@ -8,12 +8,12 @@ import java.awt.*;
 import java.io.File;
 import java.nio.file.Paths;
 
-public class fileDownload implements Runnable {
+public class FileDownload implements Runnable {
     private FTPHandler FTP;
     private FTPFile input;
     private String output;
 
-    public fileDownload(FTPHandler _FTP, FTPFile file, String saveDir){
+    public FileDownload(FTPHandler _FTP, FTPFile file, String saveDir){
         FTP = _FTP;
         input = file;
         output = saveDir;
@@ -26,7 +26,9 @@ public class fileDownload implements Runnable {
         mainPanel.setLayout(new WrapLayout());
         DP.setContentPane(mainPanel);
         mainPanel.add(new JLabel("Downloading " + input.getName() + "to " + output));
-        DP.setSize(new Dimension(400,  75));
+        Dimension size = new Dimension(400,  75);
+        DP.setSize(size);
+        DP.setPreferredSize(size);
         DP.pack();
         DP.setVisible(true);
         try {

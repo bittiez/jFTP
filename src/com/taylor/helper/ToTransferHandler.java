@@ -42,7 +42,7 @@ public class ToTransferHandler  implements DropTargetListener {
                     for (Object filez : files) {
                         File file = (File)filez;
                         //System.out.println("File path is '" + file.getPath() + "'.");
-                        Thread t = new Thread(new uploadFile(FTP, file.getPath()));
+                        Thread t = new Thread(new UploadFile(FTP, file.getPath()));
                         t.start();
                     }
 

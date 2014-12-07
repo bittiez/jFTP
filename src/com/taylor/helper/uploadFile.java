@@ -6,11 +6,11 @@ import javax.swing.*;
 import java.awt.*;
 import java.io.File;
 
-public class uploadFile implements Runnable {
+public class UploadFile implements Runnable {
     private FTPHandler FTP;
     private String input;
 
-    public uploadFile(FTPHandler _FTP, String file){
+    public UploadFile(FTPHandler _FTP, String file){
         FTP = _FTP;
         input = file;
     }

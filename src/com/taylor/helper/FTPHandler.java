@@ -25,9 +25,18 @@ public class FTPHandler {
         client.upload(LOCALFILE);
     }
 
+    public void uploadFile(File LOCALFILE, FTPDataTransferListener TRANSFERLISTENER) throws FTPException, IOException, FTPDataTransferException, FTPIllegalReplyException, FTPAbortedException {
+        client.upload(LOCALFILE, TRANSFERLISTENER);
+    }
+
     public void downloadFile(String FILE, File LOCALFILE) throws FTPException, IOException, FTPDataTransferException, FTPIllegalReplyException, FTPAbortedException {
         client.download(FILE, LOCALFILE);
     }
+
+    public void downloadFile(String FILE, File LOCALFILE, FTPDataTransferListener TRANSFERLISTENER) throws FTPException, IOException, FTPDataTransferException, FTPIllegalReplyException, FTPAbortedException {
+        client.download(FILE, LOCALFILE, TRANSFERLISTENER);
+    }
+
 
     public FTPFile[] listFiles() throws FTPException, IOException, FTPDataTransferException, FTPListParseException, FTPIllegalReplyException, FTPAbortedException {
         return client.list();
