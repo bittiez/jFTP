@@ -16,6 +16,8 @@ public class FileAndDirectoryManager implements Runnable{
     private FTPHandler FTP;
     private Map<String, FTPDirectory> directories;
     public ActionQue actionQue;
+    private boolean paused = false;
+    public boolean pause = false;
 
     public boolean complete;
 
@@ -24,6 +26,26 @@ public class FileAndDirectoryManager implements Runnable{
         directories = new HashMap<String, FTPDirectory>();
         complete = false;
         actionQue = new ActionQue(FTP, this);
+    }
+
+    public void pause(){
+        pause = true;
+        while(!paused)
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    }
+    public void unPause(){
+        pause = false;
+        while(paused){
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
     }
 
     public FTPFile[] GetFiles(String Directory){
@@ -82,9 +104,6 @@ public class FileAndDirectoryManager implements Runnable{
         }
         if(dir.isEmpty() || files == null)
             return;
-        //if(directories.containsKey(dir))
-        //   directories.remove(dir);
-        //System.out.println(dir);
 
         FTPDirectory tempDir = new FTPDirectory(files, dir);
         directories.put(dir, tempDir);
@@ -94,11 +113,23 @@ public class FileAndDirectoryManager implements Runnable{
                 subDirectories.add(dir + "/" +  file.getName());
             }
         }
-        forEachSubDirectory(subDirectories.toArray());
+        forEachSubDirectory(subDirectories.toArray(), true);
     }
 
-    public void forEachSubDirectory(Object[] _subDirectories){
+    public void forEachSubDirectory(Object[] _subDirectories, boolean initialDirectory){
         for(Object subDir : _subDirectories) {
+            if(pause)
+            {
+                paused = true;
+                while(pause) {
+                    try {
+                        Thread.sleep(1000);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+                paused = false;
+            }
             boolean success = false;
             try {
                 FTP.changeDirectory((String)subDir);
@@ -110,6 +141,8 @@ public class FileAndDirectoryManager implements Runnable{
                 runSubDirectory();
             }
         }
+        if(initialDirectory)
+            complete = true;
     }
 
     public void runSubDirectory(){
@@ -137,6 +170,6 @@ public class FileAndDirectoryManager implements Runnable{
             }
         }
         if(subDirectories.size() > 0)
-            forEachSubDirectory(subDirectories.toArray());
+            forEachSubDirectory(subDirectories.toArray(), false);
     }
 }

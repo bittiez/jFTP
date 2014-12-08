@@ -45,10 +45,10 @@ public class ActionQue implements Runnable{
                     }
                 } else if(queItem.actionType == ActionType.UPLOAD) {
                     if(!queItem.directory.isEmpty() && !queItem.localFile.isEmpty()){
-                        fileAndDirectoryManager.waitForCompletion();
+                        fileAndDirectoryManager.pause();
                         try {
                             FTP.changeDirectory(queItem.directory);
-                            new Thread(new UploadFile(FTP, queItem.localFile)).start();
+                            new Thread(new UploadFile(FTP, queItem.localFile, fileAndDirectoryManager, queItem.directory)).start();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -56,7 +56,6 @@ public class ActionQue implements Runnable{
                 } else if(queItem.actionType == ActionType.DOWNLOAD){
                     if(queItem.fileObject != null && !queItem.localFile.isEmpty()){
                         try {
-                            //FTP.changeDirectory(queItem.directory);
                             new Thread(new FileDownload(FTP, queItem.fileObject, queItem.localFile)).start();
                         } catch (Exception e) {
                             e.printStackTrace();
