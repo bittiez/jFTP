@@ -202,6 +202,8 @@ public class FileObject extends JPanel {
 
         }
         new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
+        fileBrowser.contentPanel.remove(this);
+        fileBrowser.contentPanel.updateUI();
     }
 
 
