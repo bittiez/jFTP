@@ -28,7 +28,7 @@ public class ActionQue implements Runnable{
             while(!actions.isEmpty()){
                 Action queItem = actions.get(0);
 
-                if(queItem.actionType == ActionType.DELETE){
+                if(queItem.actionType == ActionType.DELETE_FILE){
                     if(!queItem.file.isEmpty() && !queItem.directory.isEmpty()){
                         fileAndDirectoryManager.waitForCompletion();
                         try {

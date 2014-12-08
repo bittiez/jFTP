@@ -190,18 +190,18 @@ public class FileObject extends JPanel {
     }
 
     public void deleteFile(){
-        try {
-            //String path = Paths.get(fileBrowser.FTP.getCurrentDirectory(), file.getName()).toString().replace("\\", "/");
-            String path = file.getName();
-            //System.out.println(path);
-            if(fileType == FTPFile.TYPE_FILE)
-                fileBrowser.FTP.deleteFile(path);
-            else if(fileType == FTPFile.TYPE_DIRECTORY)
-                fileBrowser.FTP.deleteDirectory(path);
-        } catch (Exception e) {
-            e.printStackTrace();
+        if(fileType == FTPFile.TYPE_FILE) {
+            Action action = new Action(ActionType.DELETE_FILE);
+            action.setDirectory(Directory);
+            action.setFile(file.getName());
+            Action action2 = new Action(ActionType.RELOADDIRECTORY);
+            action2.setDirectory(Directory);
+            fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action);
+            fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action2);
+        } else if(fileType == FTPFile.TYPE_DIRECTORY){
+
         }
-        fileBrowser.listFiles();
+        new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
     }
 
 
