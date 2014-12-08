@@ -5,7 +5,6 @@ import com.taylor.helper.FileListLoader;
 import com.taylor.helper.ToTransferHandler;
 import com.taylor.manager.FileAndDirectoryManager;
 import it.sauronsoftware.ftp4j.FTPException;
-import it.sauronsoftware.ftp4j.FTPFile;
 import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 import javax.swing.*;
@@ -25,16 +24,16 @@ public class FileBrowser {
     public FTPHandler FTP;
     public ArrayList<JPanel> panelList;
     public String initialDirectory;
-    private String baseTitle = "jFTP";
+    private String baseTitle = "FTPHub";
     private JLabel loadingLabel = new JLabel(new ImageIcon(getClass().getResource("/com/taylor/48px/ajax_loader_orange_64.gif")));
     private FileListLoader FLL;
-    private FileAndDirectoryManager fileAndDirectoryManager;
+    public FileAndDirectoryManager fileAndDirectoryManager;
     public String currentDirectory;
 
 
     public FileBrowser() {
         frame = new JFrame("jFTP File Browser");
-        
+
         try {
             FTP = new FTPHandler(this);
         } catch (Exception e) {

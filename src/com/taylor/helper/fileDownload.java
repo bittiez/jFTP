@@ -1,7 +1,7 @@
 package com.taylor.helper;
 
+import com.taylor.design.FileObject;
 import com.taylor.design.WrapLayout;
-import it.sauronsoftware.ftp4j.FTPFile;
 
 import javax.swing.*;
 import java.awt.*;
@@ -10,29 +10,29 @@ import java.nio.file.Paths;
 
 public class FileDownload implements Runnable {
     private FTPHandler FTP;
-    private FTPFile input;
+    private FileObject fileObject;
     private String output;
 
-    public FileDownload(FTPHandler _FTP, FTPFile file, String saveDir){
+    public FileDownload(FTPHandler _FTP, FileObject _fileObject, String saveDir){
         FTP = _FTP;
-        input = file;
         output = saveDir;
+        fileObject = _fileObject;
     }
 
     @Override
     public void run() {
-        JFrame DP = new JFrame("Downloading " + input.getName());
+        JFrame DP = new JFrame("Downloading " + fileObject.file.getName());
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new WrapLayout());
         DP.setContentPane(mainPanel);
-        mainPanel.add(new JLabel("Downloading " + input.getName() + "to " + output));
+        mainPanel.add(new JLabel("Downloading " + fileObject.file.getName() + " to " + output));
         Dimension size = new Dimension(400,  75);
         DP.setSize(size);
         DP.setPreferredSize(size);
         DP.pack();
         DP.setVisible(true);
         try {
-            FTP.downloadFile(input.getName(), new File(Paths.get(output, input.getName()).toAbsolutePath().toString()));
+            FTP.downloadFile(fileObject.getFullPath(), new File(Paths.get(output, fileObject.file.getName()).toAbsolutePath().toString()));
         } catch (Exception e) {
             e.printStackTrace();
         }

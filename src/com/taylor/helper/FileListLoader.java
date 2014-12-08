@@ -3,11 +3,8 @@ package com.taylor.helper;
 import com.taylor.design.FileBrowser;
 import com.taylor.design.FileObject;
 import com.taylor.manager.FileAndDirectoryManager;
-import it.sauronsoftware.ftp4j.FTPException;
 import it.sauronsoftware.ftp4j.FTPFile;
-import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**

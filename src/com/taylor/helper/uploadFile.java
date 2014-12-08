@@ -17,6 +17,7 @@ public class UploadFile implements Runnable {
 
     @Override
     public void run() {
+
         JFrame DP = new JFrame("Uploading " + input);
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new WrapLayout());
@@ -26,6 +27,7 @@ public class UploadFile implements Runnable {
         DP.pack();
         DP.setVisible(true);
         try {
+
             FTP.uploadFile(new File(input));
             FTP.GUI.listFiles();
         } catch (Exception e) {

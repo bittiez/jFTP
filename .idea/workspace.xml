@@ -28,8 +28,8 @@
       <file leaf-file-name="FileBrowser.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileBrowser.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="554" max-vertical-offset="1972">
-              <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1955">
+              <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
               <folding>
                 <element signature="imports" expanded="true" />
                 <element signature="method#changeDirectoryUp#0;class#FileBrowser#0" expanded="false" />
@@ -38,52 +38,59 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileListLoader.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FileListLoader.java">
+      <file leaf-file-name="ActionQue.java" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/ActionQue.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1054">
-              <caret line="39" column="87" selection-start-line="39" selection-start-column="87" selection-end-line="39" selection-end-column="87" />
+            <state vertical-scroll-proportion="0.41708544" vertical-offset="531" max-vertical-offset="1258">
+              <caret line="46" column="85" selection-start-line="46" selection-start-column="85" selection-end-line="46" selection-end-column="85" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Action.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/Action.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="544">
+              <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
               <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="method#sortList#0;class#FileListLoader#0" expanded="false" />
+                <element signature="e#587#588#0" expanded="true" />
+                <element signature="e#619#620#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="FileAndDirectoryManager.java" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/src/com/taylor/manager/FileAndDirectoryManager.java">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2057">
-              <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
-              <folding>
-                <element signature="imports" expanded="true" />
-                <element signature="e#1308#1316#0" expanded="true" />
-                <element signature="e#2592#2600#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="FileObject.java" pinned="false" current-in-tab="true">
+      <file leaf-file-name="FileObject.java" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileObject.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.5090909" vertical-offset="518" max-vertical-offset="2244">
-              <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+            <state vertical-scroll-proportion="0.0" vertical-offset="2058" max-vertical-offset="2771">
+              <caret line="203" column="32" selection-start-line="203" selection-start-column="32" selection-end-line="203" selection-end-column="32" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#1907#1908#0" expanded="true" />
-                <element signature="e#1956#1957#0" expanded="true" />
-                <element signature="e#2033#2034#0" expanded="true" />
-                <element signature="e#2082#2083#0" expanded="true" />
-                <element signature="e#2158#2159#0" expanded="true" />
-                <element signature="e#2251#2252#0" expanded="true" />
-                <element signature="method#FileObject#1;class#FileObject#0" expanded="false" />
-                <element signature="e#5421#5422#0" expanded="true" />
-                <element signature="e#5470#5471#0" expanded="true" />
-                <element signature="e#5547#5548#0" expanded="true" />
-                <element signature="e#5596#5597#0" expanded="true" />
+                <element signature="method#FileObject#0;class#FileObject#0" expanded="false" />
+                <element signature="method#maybeShowPopup#0;class#1149:2671" expanded="false" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="UploadFile.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/UploadFile.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="680">
+              <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FileDownload.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FileDownload.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0" vertical-offset="201" max-vertical-offset="697">
+              <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -114,14 +121,19 @@
         <option value="$PROJECT_DIR$/src/com/taylor/helper/FileRightClickMenu.java" />
         <option value="$PROJECT_DIR$/src/it/sauronsoftware/ftp4j/FTPClient.java" />
         <option value="$PROJECT_DIR$/src/com/taylor/helper/FTPDirectory.java" />
-        <option value="$PROJECT_DIR$/src/com/taylor/helper/FTPHandler.java" />
         <option value="$PROJECT_DIR$/src/com/taylor/helper/FileTransferHandler.java" />
-        <option value="$PROJECT_DIR$/src/com/taylor/helper/FileDownload.java" />
         <option value="$PROJECT_DIR$/src/com/taylor/helper/ObjectSizeFetcher.java" />
-        <option value="$PROJECT_DIR$/src/com/taylor/design/FileBrowser.java" />
-        <option value="$PROJECT_DIR$/src/com/taylor/manager/FileAndDirectoryManager.java" />
         <option value="$PROJECT_DIR$/src/com/taylor/helper/FileListLoader.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/helper/ActionQue.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/ActionQue/ActionType.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/helper/FTPHandler.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/helper/FileDownload.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/ActionQue/Action.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/design/FileBrowser.java" />
         <option value="$PROJECT_DIR$/src/com/taylor/design/FileObject.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/helper/UploadFile.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/manager/FileAndDirectoryManager.java" />
+        <option value="$PROJECT_DIR$/src/com/taylor/ActionQue/ActionQue.java" />
       </list>
     </option>
   </component>
@@ -154,8 +166,8 @@
       <sortByType />
     </navigator>
     <panes>
-      <pane id="PackagesPane" />
       <pane id="Scope" />
+      <pane id="PackagesPane" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -295,6 +307,28 @@
             </PATH_ELEMENT>
             <PATH_ELEMENT>
               <option name="myItemId" value="design" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jFTP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="jFTP" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="taylor" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="ActionQue" />
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
@@ -507,7 +541,7 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-8" y="-8" width="1382" height="744" extended-state="6" />
+    <frame x="-8" y="-8" width="1382" height="744" extended-state="7" />
     <editor active="true" />
     <layout>
       <window_info id="Changes" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
@@ -520,7 +554,7 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.32913387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.32913387" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" weight="0.24963397" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
@@ -590,14 +624,92 @@
     <option name="FILTER_TARGETS" value="false" />
   </component>
   <component name="editorHistoryManager">
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileBrowser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="554" max-vertical-offset="1972">
+          <caret line="43" column="0" selection-start-line="43" selection-start-column="0" selection-end-line="43" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#changeDirectoryUp#0;class#FileBrowser#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/ActionQue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="986">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="153" max-vertical-offset="561">
+          <caret line="9" column="28" selection-start-line="9" selection-start-column="28" selection-end-line="9" selection-end-column="28" />
+          <folding>
+            <element signature="e#675#676#0" expanded="true" />
+            <element signature="e#719#720#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/ActionType.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="238">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileBrowser.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="554" max-vertical-offset="1972">
+          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#changeDirectoryUp#0;class#FileBrowser#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FileListLoader.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1054">
+          <caret line="39" column="87" selection-start-line="39" selection-start-column="87" selection-end-line="39" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#sortList#0;class#FileListLoader#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/manager/FileAndDirectoryManager.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2057">
+          <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
+          <folding>
+            <element signature="imports" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="2244">
+          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#FileObject#0;class#FileObject#0" expanded="false" />
+            <element signature="method#maybeShowPopup#0;class#1149:2671" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/com/taylor/Main.java">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="340">
           <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -617,7 +729,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="1496">
           <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#sortList#0;class#FileListLoader#0" expanded="false" />
           </folding>
         </state>
@@ -637,17 +749,8 @@
           <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1907#1908#0" expanded="true" />
-            <element signature="e#1956#1957#0" expanded="true" />
-            <element signature="e#2033#2034#0" expanded="true" />
-            <element signature="e#2082#2083#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
-            <element signature="e#2251#2252#0" expanded="true" />
-            <element signature="method#FileObject#1;class#FileObject#0" expanded="false" />
-            <element signature="e#5421#5422#0" expanded="true" />
-            <element signature="e#5470#5471#0" expanded="true" />
-            <element signature="e#5547#5548#0" expanded="true" />
-            <element signature="e#5596#5597#0" expanded="true" />
+            <element signature="method#FileObject#0;class#FileObject#0" expanded="false" />
+            <element signature="method#maybeShowPopup#0;class#1149:2671" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -657,9 +760,9 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="255" max-vertical-offset="442">
           <caret line="15" column="41" selection-start-line="15" selection-start-column="41" selection-end-line="15" selection-end-column="41" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#690#1007#0" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#560#877#0" expanded="true" />
+            <element signature="e#876#877#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -668,10 +771,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="187" max-vertical-offset="340">
           <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -691,7 +790,7 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="1496">
           <caret line="23" column="23" selection-start-line="23" selection-start-column="23" selection-end-line="23" selection-end-column="23" />
           <folding>
-            <element signature="imports" expanded="true" />
+            <element signature="imports" expanded="false" />
             <element signature="method#sortList#0;class#FileListLoader#0" expanded="false" />
           </folding>
         </state>
@@ -711,17 +810,8 @@
           <caret line="33" column="51" selection-start-line="33" selection-start-column="51" selection-end-line="33" selection-end-column="51" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1907#1908#0" expanded="true" />
-            <element signature="e#1956#1957#0" expanded="true" />
-            <element signature="e#2033#2034#0" expanded="true" />
-            <element signature="e#2082#2083#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
-            <element signature="e#2251#2252#0" expanded="true" />
-            <element signature="method#FileObject#1;class#FileObject#0" expanded="false" />
-            <element signature="e#5421#5422#0" expanded="true" />
-            <element signature="e#5470#5471#0" expanded="true" />
-            <element signature="e#5547#5548#0" expanded="true" />
-            <element signature="e#5596#5597#0" expanded="true" />
+            <element signature="method#FileObject#0;class#FileObject#0" expanded="false" />
+            <element signature="method#maybeShowPopup#0;class#1149:2671" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -731,9 +821,9 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="442">
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#690#1007#0" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#560#877#0" expanded="true" />
+            <element signature="e#876#877#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -742,10 +832,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="68" max-vertical-offset="697">
           <caret line="21" column="32" selection-start-line="21" selection-start-column="32" selection-end-line="21" selection-end-column="32" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -766,17 +852,8 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#1907#1908#0" expanded="true" />
-            <element signature="e#1956#1957#0" expanded="true" />
-            <element signature="e#2033#2034#0" expanded="true" />
-            <element signature="e#2082#2083#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
-            <element signature="e#2251#2252#0" expanded="true" />
-            <element signature="method#FileObject#1;class#FileObject#0" expanded="false" />
-            <element signature="e#5421#5422#0" expanded="true" />
-            <element signature="e#5470#5471#0" expanded="true" />
-            <element signature="e#5547#5548#0" expanded="true" />
-            <element signature="e#5596#5597#0" expanded="true" />
+            <element signature="method#FileObject#0;class#FileObject#0" expanded="false" />
+            <element signature="method#maybeShowPopup#0;class#1149:2671" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -800,10 +877,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="102" max-vertical-offset="255">
           <caret line="6" column="25" selection-start-line="6" selection-start-column="25" selection-end-line="6" selection-end-column="25" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -837,9 +910,9 @@
         <state vertical-scroll-proportion="0.0" vertical-offset="225" max-vertical-offset="816">
           <caret line="28" column="42" selection-start-line="28" selection-start-column="42" selection-end-line="28" selection-end-column="42" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#690#1007#0" expanded="true" />
-            <element signature="e#1006#1007#0" expanded="true" />
+            <element signature="imports" expanded="false" />
+            <element signature="e#560#877#0" expanded="true" />
+            <element signature="e#876#877#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -848,28 +921,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.46984926" vertical-offset="0" max-vertical-offset="398">
           <caret line="13" column="32" selection-start-line="13" selection-start-column="32" selection-end-line="13" selection-end-column="32" />
-          <folding>
-            <element signature="e#199#200#0" expanded="true" />
-            <element signature="e#238#239#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/it/sauronsoftware/ftp4j/FTPClient.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.37939698" vertical-offset="41210" max-vertical-offset="66504">
-          <caret line="2494" column="11" selection-start-line="2494" selection-start-column="10" selection-end-line="2494" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FTPHandler.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.25757575" vertical-offset="204" max-vertical-offset="1394">
-          <caret line="21" column="5" selection-start-line="21" selection-start-column="5" selection-end-line="21" selection-end-column="5" />
-          <folding>
-            <element signature="imports" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -885,7 +936,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0" vertical-offset="5" max-vertical-offset="612">
           <caret line="7" column="56" selection-start-line="7" selection-start-column="56" selection-end-line="7" selection-end-column="56" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -897,49 +947,75 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/UploadFile.java">
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FileListLoader.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="248" max-vertical-offset="646">
-          <caret line="29" column="30" selection-start-line="29" selection-start-column="30" selection-end-line="29" selection-end-column="30" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1054">
+          <caret line="39" column="87" selection-start-line="39" selection-start-column="87" selection-end-line="39" selection-end-column="87" />
+          <folding>
+            <element signature="imports" expanded="false" />
+            <element signature="method#sortList#0;class#FileListLoader#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/it/sauronsoftware/ftp4j/FTPClient.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-0.84349257" vertical-offset="44457" max-vertical-offset="66504">
+          <caret line="2646" column="16" selection-start-line="2646" selection-start-column="16" selection-end-line="2646" selection-end-column="16" />
           <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FileDownload.java">
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/ActionType.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="90" max-vertical-offset="697">
-          <caret line="31" column="18" selection-start-line="31" selection-start-column="18" selection-end-line="31" selection-end-column="18" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="0" max-vertical-offset="238">
+          <caret line="6" column="45" selection-start-line="6" selection-start-column="45" selection-end-line="6" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FTPHandler.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.057239056" vertical-offset="0" max-vertical-offset="1394">
+          <caret line="2" column="0" selection-start-line="2" selection-start-column="0" selection-end-line="2" selection-end-column="0" />
+          <folding>
+            <element signature="imports" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileObject.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="2058" max-vertical-offset="2771">
+          <caret line="203" column="32" selection-start-line="203" selection-start-column="32" selection-end-line="203" selection-end-column="32" />
+          <folding>
+            <element signature="imports" expanded="true" />
+            <element signature="method#FileObject#0;class#FileObject#0" expanded="false" />
+            <element signature="method#maybeShowPopup#0;class#1149:2671" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/UploadFile.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="39" max-vertical-offset="680">
+          <caret line="21" column="7" selection-start-line="21" selection-start-column="7" selection-end-line="21" selection-end-column="7" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/taylor/manager/FileAndDirectoryManager.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="408" max-vertical-offset="2057">
-          <caret line="26" column="48" selection-start-line="26" selection-start-column="48" selection-end-line="26" selection-end-column="48" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1308#1316#0" expanded="true" />
-            <element signature="e#2592#2600#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FileListLoader.java">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="435" max-vertical-offset="1054">
-          <caret line="39" column="87" selection-start-line="39" selection-start-column="87" selection-end-line="39" selection-end-column="87" />
-          <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="method#sortList#0;class#FileListLoader#0" expanded="false" />
-          </folding>
+        <state vertical-scroll-proportion="0.33417085" vertical-offset="547" max-vertical-offset="2397">
+          <caret line="47" column="14" selection-start-line="47" selection-start-column="14" selection-end-line="47" selection-end-column="14" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileBrowser.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0" vertical-offset="1378" max-vertical-offset="1972">
-          <caret line="101" column="0" selection-start-line="101" selection-start-column="0" selection-end-line="101" selection-end-column="0" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="163" max-vertical-offset="1955">
+          <caret line="29" column="10" selection-start-line="29" selection-start-column="10" selection-end-line="29" selection-end-column="10" />
           <folding>
             <element signature="imports" expanded="true" />
             <element signature="method#changeDirectoryUp#0;class#FileBrowser#0" expanded="false" />
@@ -947,24 +1023,30 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/src/com/taylor/design/FileObject.java">
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/helper/FileDownload.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.5090909" vertical-offset="518" max-vertical-offset="2244">
-          <caret line="42" column="39" selection-start-line="42" selection-start-column="39" selection-end-line="42" selection-end-column="39" />
+        <state vertical-scroll-proportion="0.0" vertical-offset="201" max-vertical-offset="697">
+          <caret line="32" column="28" selection-start-line="32" selection-start-column="28" selection-end-line="32" selection-end-column="28" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/Action.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0" vertical-offset="112" max-vertical-offset="544">
+          <caret line="26" column="19" selection-start-line="26" selection-start-column="19" selection-end-line="26" selection-end-column="19" />
           <folding>
-            <element signature="imports" expanded="true" />
-            <element signature="e#1907#1908#0" expanded="true" />
-            <element signature="e#1956#1957#0" expanded="true" />
-            <element signature="e#2033#2034#0" expanded="true" />
-            <element signature="e#2082#2083#0" expanded="true" />
-            <element signature="e#2158#2159#0" expanded="true" />
-            <element signature="e#2251#2252#0" expanded="true" />
-            <element signature="method#FileObject#1;class#FileObject#0" expanded="false" />
-            <element signature="e#5421#5422#0" expanded="true" />
-            <element signature="e#5470#5471#0" expanded="true" />
-            <element signature="e#5547#5548#0" expanded="true" />
-            <element signature="e#5596#5597#0" expanded="true" />
+            <element signature="e#587#588#0" expanded="true" />
+            <element signature="e#619#620#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/src/com/taylor/ActionQue/ActionQue.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.41708544" vertical-offset="531" max-vertical-offset="1258">
+          <caret line="46" column="85" selection-start-line="46" selection-start-column="85" selection-end-line="46" selection-end-column="85" />
+          <folding />
         </state>
       </provider>
     </entry>

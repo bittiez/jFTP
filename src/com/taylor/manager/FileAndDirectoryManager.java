@@ -1,8 +1,9 @@
 package com.taylor.manager;
 
+import com.taylor.ActionQue.ActionQue;
 import com.taylor.helper.FTPDirectory;
 import com.taylor.helper.FTPHandler;
-import it.sauronsoftware.ftp4j.*;
+import it.sauronsoftware.ftp4j.FTPFile;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -14,14 +15,15 @@ import java.util.Map;
 public class FileAndDirectoryManager implements Runnable{
     private FTPHandler FTP;
     private Map<String, FTPDirectory> directories;
-    private ArrayList<String> removeSubDirectories;
+    public ActionQue actionQue;
+
     public boolean complete;
 
     public FileAndDirectoryManager(FTPHandler _FTP){
         FTP = _FTP;
         directories = new HashMap<String, FTPDirectory>();
-        removeSubDirectories = new ArrayList<String>();
         complete = false;
+        actionQue = new ActionQue(FTP, this);
     }
 
     public FTPFile[] GetFiles(String Directory){
@@ -40,6 +42,31 @@ public class FileAndDirectoryManager implements Runnable{
             }
 
         }
+    }
+
+    public void waitForCompletion(){
+        while(complete == false)
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+    }
+
+    public void reloadDirectory(String dir){
+        FTPFile[] files = null;
+        try {
+            FTP.changeDirectory(dir);
+            files = FTP.listFiles();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+
+        if(dir.isEmpty() || files == null)
+            return;
+
+        FTPDirectory tempDir = new FTPDirectory(files, dir);
+        directories.put(dir, tempDir);
     }
 
     @Override

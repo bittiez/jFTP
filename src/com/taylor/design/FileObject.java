@@ -1,7 +1,8 @@
 package com.taylor.design;
 
+import com.taylor.ActionQue.*;
+import com.taylor.ActionQue.Action;
 import com.taylor.helper.FileRightClickMenu;
-import com.taylor.helper.FileDownload;
 import it.sauronsoftware.ftp4j.FTPFile;
 
 import javax.swing.*;
@@ -9,10 +10,9 @@ import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
-import java.nio.file.Paths;
 
 public class FileObject extends JPanel {
-    private FTPFile file;
+    public FTPFile file;
     private JLabel label;
     private ImageIcon icon;
     private int fileType;
@@ -44,8 +44,6 @@ public class FileObject extends JPanel {
                         upDir = fileBrowser.initialDirectory;
                     if(upDir.length() > 1 && upDir.charAt(upDir.length()-1) == "/".toCharArray()[0])
                         upDir = upDir.substring(0, upDir.length() - 1);
-
-                    //System.out.println(upDir);
                     fileBrowser.changeDir(upDir);
                 }
             }
@@ -66,9 +64,7 @@ public class FileObject extends JPanel {
             }
 
             @Override
-            public void mouseExited(MouseEvent e) {
-                label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
-            }
+            public void mouseExited(MouseEvent e) { label.setBorder(BorderFactory.createDashedBorder(backgroundColor)); }
 
             private void maybeShowPopup(MouseEvent e) {
                 if (e.isPopupTrigger()) {
@@ -84,7 +80,7 @@ public class FileObject extends JPanel {
 
     }
 
-    public FileObject(FTPFile FILE, FileBrowser FILEBROWSER, String DIRECTORY) {
+    public FileObject(FTPFile FILE, FileBrowser FILEBROWSER, final String DIRECTORY) {
         Directory = DIRECTORY;
         file = FILE;
         fileBrowser = FILEBROWSER;
@@ -128,8 +124,15 @@ public class FileObject extends JPanel {
                         saveFile.setName("Where would you like to save this file?");
                         int sf = saveFile.showSaveDialog(null);
                         if (sf == JFileChooser.APPROVE_OPTION) {
-                            //Thread t = new Thread(new FileDownload(fileBrowser.FTP, file, saveFile.getSelectedFile().getAbsolutePath()));
-                            //t.start();
+                            com.taylor.ActionQue.Action action = new Action(ActionType.DOWNLOAD);
+                            action.setFileObject(getThis());
+                            action.setLocalFile(saveFile.getSelectedFile().getAbsolutePath());
+                            fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action);
+                            new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
+
+                            Action action2 = new Action(ActionType.RELOADDIRECTORY);
+                            action2.directory = Directory;
+                            fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action2);
                         }
                     }
                 }
@@ -171,6 +174,8 @@ public class FileObject extends JPanel {
         this.add(label);
 
     }
+
+    public FileObject getThis(){ return this; }
 
     public String getFullPath(){
         String ret;
