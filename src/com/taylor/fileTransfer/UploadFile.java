@@ -1,7 +1,9 @@
-package com.taylor.helper;
+package com.taylor.fileTransfer;
 
 import com.taylor.ActionQue.ActionType;
+import com.taylor.design.Notification;
 import com.taylor.design.WrapLayout;
+import com.taylor.helper.FTPHandler;
 import com.taylor.manager.FileAndDirectoryManager;
 import com.taylor.ActionQue.Action;
 
@@ -14,24 +16,18 @@ public class UploadFile implements Runnable {
     private String input;
     private FileAndDirectoryManager fileAndDirectoryManager;
     private String uploadDirectory;
-    public UploadFile(FTPHandler _FTP, String file, FileAndDirectoryManager _fileAndDirectoryManager, String _uploadDirectory){
+    private Action queAction;
+    public UploadFile(FTPHandler _FTP, FileAndDirectoryManager _fileAndDirectoryManager, Action queAction){
         FTP = _FTP;
-        input = file;
+        input = queAction.localFile;
         fileAndDirectoryManager = _fileAndDirectoryManager;
-        uploadDirectory = _uploadDirectory;
+        uploadDirectory = queAction.directory;
+        this.queAction = queAction;
     }
 
     @Override
     public void run() {
-
-        JFrame DP = new JFrame("Uploading " + input);
-        JPanel mainPanel = new JPanel();
-        mainPanel.setLayout(new WrapLayout());
-        DP.setContentPane(mainPanel);
-        mainPanel.add(new JLabel("Uploading " + input));
-        DP.setSize(new Dimension(400,  75));
-        DP.pack();
-        DP.setVisible(true);
+        new Notification("Uploading file", "Uploading " + input + "..", 5);
         System.out.println("Uploading " + input + " to " + uploadDirectory);
         try {
             FTP.changeDirectory(uploadDirectory);
@@ -43,7 +39,16 @@ public class UploadFile implements Runnable {
             new Thread(fileAndDirectoryManager.actionQue).start();
         } catch (Exception e) {
             e.printStackTrace();
+            new Notification("Upload failed!", input + " failed to upload, trying again in a moment..", 5);
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e1) {
+                e1.printStackTrace();
+            }
+            fileAndDirectoryManager.unPause();
+            fileAndDirectoryManager.actionQue.actions.add(queAction);
+            new Thread(fileAndDirectoryManager.actionQue).start();
+
         }
-        DP.dispose();
     }
 }

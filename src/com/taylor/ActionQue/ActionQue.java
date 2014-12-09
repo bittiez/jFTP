@@ -1,8 +1,8 @@
 package com.taylor.ActionQue;
 
 import com.taylor.helper.FTPHandler;
-import com.taylor.helper.FileDownload;
-import com.taylor.helper.UploadFile;
+import com.taylor.fileTransfer.FileDownload;
+import com.taylor.fileTransfer.UploadFile;
 import com.taylor.manager.FileAndDirectoryManager;
 
 import java.util.ArrayList;
@@ -51,7 +51,7 @@ public class ActionQue implements Runnable{
                     if(!queItem.directory.isEmpty() && !queItem.localFile.isEmpty()){
                         fileAndDirectoryManager.pauseManager();
                         try {
-                            new UploadFile(FTP, queItem.localFile, fileAndDirectoryManager, queItem.directory).run();
+                            new UploadFile(FTP, fileAndDirectoryManager, queItem).run();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }

@@ -132,6 +132,7 @@ public class FileObject extends JPanel {
                             action2.directory = Directory;
                             fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action2);
                             new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
+                            new Notification("Downloading File", file.getName() + " will be downloaded soon.", 5);
                         }
                     }
                 }
@@ -203,6 +204,7 @@ public class FileObject extends JPanel {
         new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
         fileBrowser.contentPanel.remove(this);
         fileBrowser.contentPanel.updateUI();
+        new Notification("Deleting File", file.getName() + " will be deleted soon", 5);
     }
 
 

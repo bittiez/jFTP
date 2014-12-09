@@ -1,7 +1,8 @@
-package com.taylor.helper;
+package com.taylor.fileTransfer;
 
 import com.taylor.design.FileObject;
 import com.taylor.design.WrapLayout;
+import com.taylor.helper.FTPHandler;
 
 import javax.swing.*;
 import java.awt.*;
