@@ -41,7 +41,7 @@ public class FileAndDirectoryManager implements Runnable{
     }
     public void unPause(){
         pause = false;
-        System.out.println("UnPaused");
+        System.out.println("Unpaused");
         while(paused){
             try {
                 Thread.sleep(1000);

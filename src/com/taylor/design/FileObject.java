@@ -128,11 +128,10 @@ public class FileObject extends JPanel {
                             action.setFileObject(getThis());
                             action.setLocalFile(saveFile.getSelectedFile().getAbsolutePath());
                             fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action);
-                            new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
-
                             Action action2 = new Action(ActionType.RELOADDIRECTORY);
                             action2.directory = Directory;
                             fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action2);
+                            new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
                         }
                     }
                 }
