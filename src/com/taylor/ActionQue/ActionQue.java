@@ -32,6 +32,7 @@ public class ActionQue implements Runnable{
                     if(!queItem.file.isEmpty() && !queItem.directory.isEmpty()){
                         fileAndDirectoryManager.waitForCompletion();
                         try {
+                            System.out.println("Deleting " +queItem.file+ " from "+queItem.directory);
                             FTP.changeDirectory(queItem.directory);
                             FTP.deleteFile(queItem.file);
                         } catch (Exception e) {
@@ -41,14 +42,14 @@ public class ActionQue implements Runnable{
                 } else if(queItem.actionType == ActionType.RELOADDIRECTORY){
                     if(!queItem.directory.isEmpty()){
                         fileAndDirectoryManager.waitForCompletion();
+                        System.out.println("Reloading "+queItem.directory);
                         fileAndDirectoryManager.reloadDirectory(queItem.directory);
                     }
                 } else if(queItem.actionType == ActionType.UPLOAD) {
                     if(!queItem.directory.isEmpty() && !queItem.localFile.isEmpty()){
-                        fileAndDirectoryManager.pause();
+                        fileAndDirectoryManager.pauseManager();
                         try {
-                            FTP.changeDirectory(queItem.directory);
-                            new Thread(new UploadFile(FTP, queItem.localFile, fileAndDirectoryManager, queItem.directory)).start();
+                            new UploadFile(FTP, queItem.localFile, fileAndDirectoryManager, queItem.directory).run();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
@@ -65,6 +66,7 @@ public class ActionQue implements Runnable{
 
                 actions.remove(0);
             }
+            running=false;
         }
     }
 

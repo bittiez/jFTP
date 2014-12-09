@@ -32,7 +32,9 @@ public class UploadFile implements Runnable {
         DP.setSize(new Dimension(400,  75));
         DP.pack();
         DP.setVisible(true);
+        System.out.println("Uploading " + input + " to " + uploadDirectory);
         try {
+            FTP.changeDirectory(uploadDirectory);
             FTP.uploadFile(new File(input));
             fileAndDirectoryManager.unPause();
             Action reloadDirectory = new Action(ActionType.RELOADDIRECTORY);

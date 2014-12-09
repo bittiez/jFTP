@@ -1,5 +1,10 @@
 package com.taylor.helper;
 
+import com.taylor.ActionQue.Action;
+import com.taylor.ActionQue.ActionType;
+import com.taylor.design.FileBrowser;
+import com.taylor.manager.FileAndDirectoryManager;
+
 import java.awt.datatransfer.DataFlavor;
 import java.awt.datatransfer.Transferable;
 import java.awt.dnd.*;
@@ -11,8 +16,12 @@ import java.util.List;
  */
 public class ToTransferHandler  implements DropTargetListener {
     private FTPHandler FTP;
-    public ToTransferHandler(FTPHandler _FTP){
+    private FileBrowser fileBrowser;
+    private FileAndDirectoryManager fileAndDirectoryManager;
+    public ToTransferHandler(FTPHandler _FTP, FileBrowser _fileBrowser, FileAndDirectoryManager _fileAndDirectoryManager){
+        fileBrowser = _fileBrowser;
         FTP = _FTP;
+        fileAndDirectoryManager = _fileAndDirectoryManager;
     }
 
     @Override
@@ -41,9 +50,11 @@ public class ToTransferHandler  implements DropTargetListener {
                     // Loop them through
                     for (Object filez : files) {
                         File file = (File)filez;
-                        //System.out.println("File path is '" + file.getPath() + "'.");
-                        Thread t = new Thread(new UploadFile(FTP, file.getPath()));
-                        t.start();
+                        Action uploadFile = new Action(ActionType.UPLOAD);
+                        uploadFile.setDirectory(fileBrowser.currentDirectory);
+                        uploadFile.setLocalFile(file.getPath());
+                        fileAndDirectoryManager.actionQue.actions.add(uploadFile);
+                        new Thread(fileAndDirectoryManager.actionQue).start();
                     }
 
                 }

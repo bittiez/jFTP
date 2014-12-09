@@ -74,7 +74,7 @@ public class FileBrowser {
         contentPanel.setLayout(GL);
 
         // Create the drag and drop listener
-        ToTransferHandler myDragDropListener = new ToTransferHandler(FTP);
+        ToTransferHandler myDragDropListener = new ToTransferHandler(FTP, this, fileAndDirectoryManager);
 
         // Connect the label with a drag and drop listener
         new DropTarget(contentPanel, myDragDropListener);

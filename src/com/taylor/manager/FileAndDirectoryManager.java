@@ -28,17 +28,20 @@ public class FileAndDirectoryManager implements Runnable{
         actionQue = new ActionQue(FTP, this);
     }
 
-    public void pause(){
+    public void pauseManager(){
         pause = true;
-        while(!paused)
+        System.out.println("Paused");
+        while(!paused) {
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
+        }
     }
     public void unPause(){
         pause = false;
+        System.out.println("UnPaused");
         while(paused){
             try {
                 Thread.sleep(1000);
@@ -116,20 +119,24 @@ public class FileAndDirectoryManager implements Runnable{
         forEachSubDirectory(subDirectories.toArray(), true);
     }
 
+    private void pause(){
+        if(pause)
+        {
+            paused = true;
+            while(pause) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
+            }
+            paused = false;
+        }
+    }
+
     public void forEachSubDirectory(Object[] _subDirectories, boolean initialDirectory){
         for(Object subDir : _subDirectories) {
-            if(pause)
-            {
-                paused = true;
-                while(pause) {
-                    try {
-                        Thread.sleep(1000);
-                    } catch (InterruptedException e) {
-                        e.printStackTrace();
-                    }
-                }
-                paused = false;
-            }
+            pause();
             boolean success = false;
             try {
                 FTP.changeDirectory((String)subDir);
