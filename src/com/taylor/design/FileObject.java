@@ -1,7 +1,7 @@
 package com.taylor.design;
 
-import com.taylor.ActionQue.*;
 import com.taylor.ActionQue.Action;
+import com.taylor.ActionQue.ActionType;
 import com.taylor.helper.FileRightClickMenu;
 import it.sauronsoftware.ftp4j.FTPFile;
 

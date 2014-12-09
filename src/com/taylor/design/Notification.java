@@ -1,13 +1,8 @@
 package com.taylor.design;
 
-import javafx.geometry.Bounds;
-import javafx.stage.Screen;
-
 import javax.swing.*;
 import java.awt.*;
-import java.awt.geom.Rectangle2D;
 import java.util.ArrayList;
-import java.util.Objects;
 
 /**
  * Created by tad on 12/9/2014.

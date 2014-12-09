@@ -1,14 +1,11 @@
 package com.taylor.fileTransfer;
 
+import com.taylor.ActionQue.Action;
 import com.taylor.ActionQue.ActionType;
 import com.taylor.design.Notification;
-import com.taylor.design.WrapLayout;
 import com.taylor.helper.FTPHandler;
 import com.taylor.manager.FileAndDirectoryManager;
-import com.taylor.ActionQue.Action;
 
-import javax.swing.*;
-import java.awt.*;
 import java.io.File;
 
 public class UploadFile implements Runnable {

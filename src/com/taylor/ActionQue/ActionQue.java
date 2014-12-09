@@ -1,8 +1,8 @@
 package com.taylor.ActionQue;
 
-import com.taylor.helper.FTPHandler;
 import com.taylor.fileTransfer.FileDownload;
 import com.taylor.fileTransfer.UploadFile;
+import com.taylor.helper.FTPHandler;
 import com.taylor.manager.FileAndDirectoryManager;
 
 import java.util.ArrayList;
