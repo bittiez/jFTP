@@ -30,7 +30,7 @@ public class ActionQue implements Runnable{
 
                 if(queItem.actionType == ActionType.DELETE_FILE){
                     if(!queItem.file.isEmpty() && !queItem.directory.isEmpty()){
-                        fileAndDirectoryManager.waitForCompletion();
+                        fileAndDirectoryManager.pauseManager();
                         try {
                             System.out.println("Deleting " +queItem.file+ " from "+queItem.directory);
                             FTP.changeDirectory(queItem.directory);
@@ -38,12 +38,14 @@ public class ActionQue implements Runnable{
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                        fileAndDirectoryManager.unPause();
                     }
                 } else if(queItem.actionType == ActionType.RELOADDIRECTORY){
                     if(!queItem.directory.isEmpty()){
-                        fileAndDirectoryManager.waitForCompletion();
+                        fileAndDirectoryManager.pauseManager();
                         System.out.println("Reloading "+queItem.directory);
                         fileAndDirectoryManager.reloadDirectory(queItem.directory);
+                        fileAndDirectoryManager.unPause();
                     }
                 } else if(queItem.actionType == ActionType.UPLOAD) {
                     if(!queItem.directory.isEmpty() && !queItem.localFile.isEmpty()){
