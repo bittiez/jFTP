@@ -14,7 +14,7 @@ public class FileDownload implements Runnable {
     private FileObject fileObject;
     private String output;
 
-    public FileDownload(FTPHandler _FTP, FileObject _fileObject, String saveDir){
+    public FileDownload(FTPHandler _FTP, FileObject _fileObject, String saveDir) {
         FTP = _FTP;
         output = saveDir;
         fileObject = _fileObject;
@@ -27,7 +27,7 @@ public class FileDownload implements Runnable {
         mainPanel.setLayout(new WrapLayout());
         DP.setContentPane(mainPanel);
         mainPanel.add(new JLabel("Downloading " + fileObject.file.getName() + " to " + output));
-        Dimension size = new Dimension(400,  75);
+        Dimension size = new Dimension(400, 75);
         DP.setSize(size);
         DP.setPreferredSize(size);
         DP.pack();

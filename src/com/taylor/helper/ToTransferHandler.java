@@ -14,11 +14,12 @@ import java.util.List;
 /**
  * Created by tad on 12/4/2014.
  */
-public class ToTransferHandler  implements DropTargetListener {
+public class ToTransferHandler implements DropTargetListener {
     private FTPHandler FTP;
     private FileBrowser fileBrowser;
     private FileAndDirectoryManager fileAndDirectoryManager;
-    public ToTransferHandler(FTPHandler _FTP, FileBrowser _fileBrowser, FileAndDirectoryManager _fileAndDirectoryManager){
+
+    public ToTransferHandler(FTPHandler _FTP, FileBrowser _fileBrowser, FileAndDirectoryManager _fileAndDirectoryManager) {
         fileBrowser = _fileBrowser;
         FTP = _FTP;
         fileAndDirectoryManager = _fileAndDirectoryManager;
@@ -49,7 +50,7 @@ public class ToTransferHandler  implements DropTargetListener {
 
                     // Loop them through
                     for (Object filez : files) {
-                        File file = (File)filez;
+                        File file = (File) filez;
                         Action uploadFile = new Action(ActionType.UPLOAD);
                         uploadFile.setDirectory(fileBrowser.currentDirectory);
                         uploadFile.setLocalFile(file.getPath());

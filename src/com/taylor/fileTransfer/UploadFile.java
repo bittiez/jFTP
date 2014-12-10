@@ -14,7 +14,8 @@ public class UploadFile implements Runnable {
     private FileAndDirectoryManager fileAndDirectoryManager;
     private String uploadDirectory;
     private Action queAction;
-    public UploadFile(FTPHandler _FTP, FileAndDirectoryManager _fileAndDirectoryManager, Action queAction){
+
+    public UploadFile(FTPHandler _FTP, FileAndDirectoryManager _fileAndDirectoryManager, Action queAction) {
         FTP = _FTP;
         input = queAction.localFile;
         fileAndDirectoryManager = _fileAndDirectoryManager;

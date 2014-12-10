@@ -20,27 +20,27 @@ package it.sauronsoftware.ftp4j;
 
 /**
  * Exception thrown if any I/O error occurs during a data transfer attempt.
- * 
+ *
  * @author Carlo Pelliccia
  */
 public class FTPDataTransferException extends Exception {
 
-	private static final long serialVersionUID = 1L;
+    private static final long serialVersionUID = 1L;
 
-	public FTPDataTransferException() {
-		super();
-	}
+    public FTPDataTransferException() {
+        super();
+    }
 
-	public FTPDataTransferException(String message, Throwable cause) {
-		super(message, cause);
-	}
+    public FTPDataTransferException(String message, Throwable cause) {
+        super(message, cause);
+    }
 
-	public FTPDataTransferException(String message) {
-		super(message);
-	}
+    public FTPDataTransferException(String message) {
+        super(message);
+    }
 
-	public FTPDataTransferException(Throwable cause) {
-		super(cause);
-	}
+    public FTPDataTransferException(Throwable cause) {
+        super(cause);
+    }
 
 }

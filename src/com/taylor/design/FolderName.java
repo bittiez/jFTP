@@ -5,12 +5,12 @@ import java.awt.*;
 import java.awt.event.*;
 
 public class FolderName extends JDialog {
+    public boolean canceled = true;
+    public JTextField name;
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton buttonCancel;
     private JPanel mainPanel;
-    public boolean canceled = true;
-    public JTextField name;
 
     public FolderName() {
         setContentPane(contentPane);
@@ -54,7 +54,7 @@ public class FolderName extends JDialog {
 
     private void onOK() {
 // add your code here
-        if(!name.getText().isEmpty())
+        if (!name.getText().isEmpty())
             canceled = false;
         else
             canceled = true;

@@ -5,21 +5,19 @@ import com.taylor.fileTransfer.FileDownload;
 import com.taylor.fileTransfer.UploadFile;
 import com.taylor.helper.FTPHandler;
 import com.taylor.manager.FileAndDirectoryManager;
-import it.sauronsoftware.ftp4j.FTPException;
-import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
  * Created by tad on 12/7/2014.
  */
-public class ActionQue implements Runnable{
-    private boolean running = false;
+public class ActionQue implements Runnable {
     public ArrayList<Action> actions;
+    private boolean running = false;
     private FTPHandler FTP;
     private FileAndDirectoryManager fileAndDirectoryManager;
-    public ActionQue(FTPHandler _FTP, FileAndDirectoryManager _fileAndDirectoryManager){
+
+    public ActionQue(FTPHandler _FTP, FileAndDirectoryManager _fileAndDirectoryManager) {
         actions = new ArrayList<Action>();
         FTP = _FTP;
         fileAndDirectoryManager = _fileAndDirectoryManager;
@@ -27,16 +25,16 @@ public class ActionQue implements Runnable{
 
     @Override
     public void run() {
-        if(!running){
+        if (!running) {
             running = true;
-            while(!actions.isEmpty()){
+            while (!actions.isEmpty()) {
                 Action queItem = actions.get(0);
 
-                if(queItem.actionType == ActionType.DELETE_FILE){
-                    if(!queItem.file.isEmpty() && !queItem.directory.isEmpty()){
+                if (queItem.actionType == ActionType.DELETE_FILE) {
+                    if (!queItem.file.isEmpty() && !queItem.directory.isEmpty()) {
                         fileAndDirectoryManager.pauseManager();
                         try {
-                            System.out.println("Deleting " +queItem.file+ " from "+queItem.directory);
+                            System.out.println("Deleting " + queItem.file + " from " + queItem.directory);
                             FTP.changeDirectory(queItem.directory);
                             FTP.deleteFile(queItem.file);
                         } catch (Exception e) {
@@ -44,8 +42,8 @@ public class ActionQue implements Runnable{
                         }
                         fileAndDirectoryManager.unPause();
                     }
-                } else if(queItem.actionType == ActionType.DELETE_DIRECTORY) {
-                    if(!queItem.file.isEmpty() && !queItem.directory.isEmpty()){
+                } else if (queItem.actionType == ActionType.DELETE_DIRECTORY) {
+                    if (!queItem.file.isEmpty() && !queItem.directory.isEmpty()) {
                         fileAndDirectoryManager.pauseManager();
                         try {
                             FTP.changeDirectory(queItem.directory);
@@ -56,15 +54,15 @@ public class ActionQue implements Runnable{
                         System.out.println("Deleting directory: " + queItem.file);
                         fileAndDirectoryManager.unPause();
                     }
-                } else if(queItem.actionType == ActionType.RELOADDIRECTORY){
-                    if(!queItem.directory.isEmpty()){
+                } else if (queItem.actionType == ActionType.RELOADDIRECTORY) {
+                    if (!queItem.directory.isEmpty()) {
                         fileAndDirectoryManager.pauseManager();
-                        System.out.println("Reloading "+queItem.directory);
+                        System.out.println("Reloading " + queItem.directory);
                         fileAndDirectoryManager.reloadDirectory(queItem.directory);
                         fileAndDirectoryManager.unPause();
                     }
-                } else if(queItem.actionType == ActionType.UPLOAD) {
-                    if(!queItem.directory.isEmpty() && !queItem.localFile.isEmpty()){
+                } else if (queItem.actionType == ActionType.UPLOAD) {
+                    if (!queItem.directory.isEmpty() && !queItem.localFile.isEmpty()) {
                         fileAndDirectoryManager.pauseManager();
                         try {
                             new UploadFile(FTP, fileAndDirectoryManager, queItem).run();
@@ -72,16 +70,16 @@ public class ActionQue implements Runnable{
                             e.printStackTrace();
                         }
                     }
-                } else if(queItem.actionType == ActionType.DOWNLOAD){
-                    if(queItem.fileObject != null && !queItem.localFile.isEmpty()){
+                } else if (queItem.actionType == ActionType.DOWNLOAD) {
+                    if (queItem.fileObject != null && !queItem.localFile.isEmpty()) {
                         try {
                             new Thread(new FileDownload(FTP, queItem.fileObject, queItem.localFile)).start();
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
                     }
-                } else if(queItem.actionType == ActionType.NEWDIRECTORY){
-                    if(!queItem.directory.isEmpty() && !queItem.newDirectory.isEmpty()){
+                } else if (queItem.actionType == ActionType.NEWDIRECTORY) {
+                    if (!queItem.directory.isEmpty() && !queItem.newDirectory.isEmpty()) {
                         fileAndDirectoryManager.pauseManager();
                         try {
                             FTP.changeDirectory(queItem.directory);
@@ -97,7 +95,7 @@ public class ActionQue implements Runnable{
 
                 actions.remove(0);
             }
-            running=false;
+            running = false;
         }
     }
 

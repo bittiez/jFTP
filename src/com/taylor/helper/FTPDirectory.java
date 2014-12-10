@@ -8,7 +8,8 @@ import it.sauronsoftware.ftp4j.FTPFile;
 public class FTPDirectory {
     public FTPFile[] files;
     public String directory;
-    public FTPDirectory(FTPFile[] _file, String _directory){
+
+    public FTPDirectory(FTPFile[] _file, String _directory) {
         files = _file;
         directory = _directory;
     }

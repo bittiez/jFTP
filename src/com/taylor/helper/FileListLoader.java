@@ -11,13 +11,13 @@ import java.util.ArrayList;
  * Created by tad on 12/4/2014.
  */
 public class FileListLoader implements Runnable {
-    private FTPHandler FTP;
     private FileBrowser fileBrowser;
     private FileAndDirectoryManager fileAndDirectoryManager;
     private String currentDirectory;
-    public FileListLoader(FTPHandler _FTP, FileAndDirectoryManager fileAndDirMan, String directory){
-        FTP = _FTP;
-        fileBrowser = FTP.GUI;
+
+    public FileListLoader(FTPHandler _FTP, FileAndDirectoryManager fileAndDirMan, String directory, FileBrowser fileBrowser) {
+        FTPHandler FTP = _FTP;
+        this.fileBrowser = fileBrowser;
         fileAndDirectoryManager = fileAndDirMan;
         currentDirectory = directory;
     }
@@ -32,15 +32,15 @@ public class FileListLoader implements Runnable {
         }
         list = sortList(list);
         fileBrowser.contentPanel.removeAll();
-            if(!currentDirectory.equals(fileBrowser.initialDirectory)){
+        if (!currentDirectory.equals(fileBrowser.initialDirectory)) {
 
-                FileObject fileObjectDir = new FileObject(fileBrowser, currentDirectory);
-                fileBrowser.panelList.add(fileObjectDir);
-                fileBrowser.contentPanel.add((fileObjectDir));
-            }
+            FileObject fileObjectDir = new FileObject(fileBrowser, currentDirectory);
+            fileBrowser.panelList.add(fileObjectDir);
+            fileBrowser.contentPanel.add((fileObjectDir));
+        }
 
 
-        for(FTPFile file : list){
+        for (FTPFile file : list) {
             FileObject fileObjectPanel = new FileObject(file, fileBrowser, currentDirectory.toString());
             fileBrowser.panelList.add(fileObjectPanel);
             fileBrowser.contentPanel.add(fileObjectPanel);
@@ -65,10 +65,10 @@ public class FileListLoader implements Runnable {
                     break;
             }
         }
-        for(FTPFile filez : dir){
+        for (FTPFile filez : dir) {
             combine.add(filez);
         }
-        for(FTPFile filez : file){
+        for (FTPFile filez : file) {
             combine.add(filez);
         }
         FTPFile[] fa = new FTPFile[combine.size()];

@@ -12,12 +12,12 @@ import java.awt.event.MouseEvent;
 import java.awt.image.BufferedImage;
 
 public class FileObject extends JPanel {
+    private final int iconSize = 25;
     public FTPFile file;
+    public FileBrowser fileBrowser;
     private JLabel label;
     private ImageIcon icon;
     private int fileType;
-    private final int iconSize = 25;
-    public FileBrowser fileBrowser;
     private Color backgroundColor;
     private String Directory;
 
@@ -40,9 +40,9 @@ public class FileObject extends JPanel {
             public void mouseClicked(MouseEvent e) {
                 if (e.getClickCount() > 1 && SwingUtilities.isLeftMouseButton(e)) {
                     String upDir = getFullPath().substring(0, getFullPath().lastIndexOf("/") + 1);
-                    if(upDir.isEmpty())
+                    if (upDir.isEmpty())
                         upDir = fileBrowser.initialDirectory;
-                    if(upDir.length() > 1 && upDir.charAt(upDir.length()-1) == "/".toCharArray()[0])
+                    if (upDir.length() > 1 && upDir.charAt(upDir.length() - 1) == "/".toCharArray()[0])
                         upDir = upDir.substring(0, upDir.length() - 1);
                     fileBrowser.changeDir(upDir);
                 }
@@ -64,7 +64,9 @@ public class FileObject extends JPanel {
             }
 
             @Override
-            public void mouseExited(MouseEvent e) { label.setBorder(BorderFactory.createDashedBorder(backgroundColor)); }
+            public void mouseExited(MouseEvent e) {
+                label.setBorder(BorderFactory.createDashedBorder(backgroundColor));
+            }
 
             private void maybeShowPopup(MouseEvent e) {
                 if (e.isPopupTrigger()) {
@@ -175,22 +177,24 @@ public class FileObject extends JPanel {
 
     }
 
-    public FileObject getThis(){ return this; }
+    public FileObject getThis() {
+        return this;
+    }
 
-    public String getFullPath(){
+    public String getFullPath() {
         String ret;
-        if(file != null)
+        if (file != null)
             ret = Directory + "/" + file.getName();
         else
             ret = Directory;
-        while(ret.contains("\\"))
+        while (ret.contains("\\"))
             ret = ret.replace("\\", "/");
         ret = ret.replaceAll("//", "/");
         return ret;
     }
 
-    public void deleteFile(){
-        if(fileType == FTPFile.TYPE_FILE) {
+    public void deleteFile() {
+        if (fileType == FTPFile.TYPE_FILE) {
             Action action = new Action(ActionType.DELETE_FILE);
             action.setDirectory(Directory);
             action.setFile(file.getName());
@@ -199,7 +203,7 @@ public class FileObject extends JPanel {
             fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action);
             fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action2);
             new Notification("Deleting File", file.getName() + " will be deleted soon", 5);
-        } else if(fileType == FTPFile.TYPE_DIRECTORY){
+        } else if (fileType == FTPFile.TYPE_DIRECTORY) {
             Action delete = new Action(ActionType.DELETE_DIRECTORY);
             delete.setFile(file.getName());
             delete.setDirectory(Directory);

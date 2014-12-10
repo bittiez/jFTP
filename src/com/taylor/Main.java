@@ -1,16 +1,14 @@
 package com.taylor;
 
-import com.taylor.design.FileBrowser;
+import com.taylor.design.ConnectionUI;
 
 public class Main {
 
-    public static void main(String[] args) {
-        new Main();
+    public Main() {
+        new ConnectionUI();
     }
 
-
-    public FileBrowser GUI;
-    public Main(){
-        GUI = new FileBrowser();
+    public static void main(String[] args) {
+        new Main();
     }
 }

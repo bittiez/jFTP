@@ -8,13 +8,15 @@ import java.io.IOException;
 
 public class FTPHandler {
     public FTPClient client;
-    public FileBrowser GUI;
 
-    public FTPHandler(FileBrowser _GUI) throws FTPException, IOException, FTPIllegalReplyException {
+    public FTPHandler() throws FTPException, IOException, FTPIllegalReplyException {
+
+    }
+
+    public FTPHandler(String OLD) throws FTPException, IOException, FTPIllegalReplyException {
         client = new FTPClient();
         client.connect("jshare.ddns.net");
         client.login("Tad", "ubt7smh8");
-        GUI = _GUI;
     }
 
     public void changeDirectoryUp() throws FTPException, IOException, FTPIllegalReplyException {

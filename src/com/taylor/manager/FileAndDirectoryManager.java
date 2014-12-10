@@ -12,23 +12,22 @@ import java.util.Map;
 /**
  * Created by tad on 12/6/2014.
  */
-public class FileAndDirectoryManager implements Runnable{
+public class FileAndDirectoryManager implements Runnable {
+    public ActionQue actionQue;
+    public boolean pause = false;
+    public boolean complete = true;
     private FTPHandler FTP;
     private Map<String, FTPDirectory> directories;
-    public ActionQue actionQue;
     private boolean paused = false;
-    public boolean pause = false;
 
-    public boolean complete = true;
-
-    public FileAndDirectoryManager(FTPHandler _FTP){
+    public FileAndDirectoryManager(FTPHandler _FTP) {
         FTP = _FTP;
         directories = new HashMap<String, FTPDirectory>();
         actionQue = new ActionQue(FTP, this);
     }
 
-    public void pauseManager(){
-        if(!complete) {
+    public void pauseManager() {
+        if (!complete) {
             pause = true;
             System.out.println("Paused");
             while (!paused) {
@@ -40,32 +39,32 @@ public class FileAndDirectoryManager implements Runnable{
             }
         }
     }
-    public void unPause(){
-            pause = false;
-            System.out.println("Unpaused");
-            while (paused) {
-                try {
-                    Thread.sleep(1000);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
+
+    public void unPause() {
+        pause = false;
+        System.out.println("Unpaused");
+        while (paused) {
+            try {
+                Thread.sleep(1000);
+            } catch (InterruptedException e) {
+                e.printStackTrace();
             }
+        }
     }
 
-    public FTPFile[] GetFiles(String Directory){
-        if(directories.containsKey(Directory))
+    public FTPFile[] GetFiles(String Directory) {
+        if (directories.containsKey(Directory))
             return directories.get(Directory).files;
-        else
-        {
-            while(true) {
+        else {
+            while (true) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-                if(directories.containsKey(Directory))
+                if (directories.containsKey(Directory))
                     return directories.get(Directory).files;
-                if(complete){
+                if (complete) {
                     reloadDirectory(Directory);
                 }
             }
@@ -73,8 +72,8 @@ public class FileAndDirectoryManager implements Runnable{
         }
     }
 
-    public void waitForCompletion(){
-        while(complete == false)
+    public void waitForCompletion() {
+        while (!complete)
             try {
                 Thread.sleep(1000);
             } catch (InterruptedException e) {
@@ -82,7 +81,7 @@ public class FileAndDirectoryManager implements Runnable{
             }
     }
 
-    public void reloadDirectory(String dir){
+    public void reloadDirectory(String dir) {
         FTPFile[] files = null;
         try {
             FTP.changeDirectory(dir);
@@ -91,7 +90,7 @@ public class FileAndDirectoryManager implements Runnable{
             e.printStackTrace();
         }
 
-        if(dir.isEmpty() || files == null)
+        if (dir.isEmpty() || files == null)
             return;
 
         FTPDirectory tempDir = new FTPDirectory(files, dir);
@@ -100,7 +99,7 @@ public class FileAndDirectoryManager implements Runnable{
 
     @Override
     public void run() {
-        if(!complete)
+        if (!complete)
             return;
         complete = false;
         ArrayList<String> subDirectories = new ArrayList<String>();
@@ -112,25 +111,24 @@ public class FileAndDirectoryManager implements Runnable{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(dir.isEmpty() || files == null)
+        if (dir.isEmpty() || files == null)
             return;
 
         FTPDirectory tempDir = new FTPDirectory(files, dir);
         directories.put(dir, tempDir);
 
-        for(FTPFile file : files){
-            if(file.getType() == FTPFile.TYPE_DIRECTORY){
-                subDirectories.add(dir + "/" +  file.getName());
+        for (FTPFile file : files) {
+            if (file.getType() == FTPFile.TYPE_DIRECTORY) {
+                subDirectories.add(dir + "/" + file.getName());
             }
         }
         forEachSubDirectory(subDirectories.toArray(), true);
     }
 
-    private void pause(){
-        if(pause)
-        {
+    private void pause() {
+        if (pause) {
             paused = true;
-            while(pause) {
+            while (pause) {
                 try {
                     Thread.sleep(1000);
                 } catch (InterruptedException e) {
@@ -141,25 +139,25 @@ public class FileAndDirectoryManager implements Runnable{
         }
     }
 
-    public void forEachSubDirectory(Object[] _subDirectories, boolean initialDirectory){
-        for(Object subDir : _subDirectories) {
+    public void forEachSubDirectory(Object[] _subDirectories, boolean initialDirectory) {
+        for (Object subDir : _subDirectories) {
             pause();
             boolean success = false;
             try {
-                FTP.changeDirectory((String)subDir);
+                FTP.changeDirectory((String) subDir);
                 success = true;
             } catch (Exception e) {
                 e.printStackTrace();
             }
-            if(success){
+            if (success) {
                 runSubDirectory();
             }
         }
-        if(initialDirectory)
+        if (initialDirectory)
             complete = true;
     }
 
-    public void runSubDirectory(){
+    public void runSubDirectory() {
         ArrayList<String> subDirectories = new ArrayList<String>();
         FTPFile[] files = null;
         String dir = "";
@@ -169,7 +167,7 @@ public class FileAndDirectoryManager implements Runnable{
         } catch (Exception e) {
             e.printStackTrace();
         }
-        if(dir.isEmpty() || files == null)
+        if (dir.isEmpty() || files == null)
             return;
         //if(directories.containsKey(dir))
         //    directories.remove(dir);
@@ -178,12 +176,12 @@ public class FileAndDirectoryManager implements Runnable{
         FTPDirectory tempDir = new FTPDirectory(files, dir);
         directories.put(dir, tempDir);
 
-        for(FTPFile file : files){
-            if(file.getType() == FTPFile.TYPE_DIRECTORY){
-                subDirectories.add(dir + "/" +  file.getName());
+        for (FTPFile file : files) {
+            if (file.getType() == FTPFile.TYPE_DIRECTORY) {
+                subDirectories.add(dir + "/" + file.getName());
             }
         }
-        if(subDirectories.size() > 0)
+        if (subDirectories.size() > 0)
             forEachSubDirectory(subDirectories.toArray(), false);
     }
 }

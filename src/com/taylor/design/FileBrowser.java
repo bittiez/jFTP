@@ -5,15 +5,12 @@ import com.taylor.helper.FileListLoader;
 import com.taylor.helper.FileRightClickMenu;
 import com.taylor.helper.ToTransferHandler;
 import com.taylor.manager.FileAndDirectoryManager;
-import it.sauronsoftware.ftp4j.FTPException;
-import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.dnd.DropTarget;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
-import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -21,32 +18,40 @@ import java.util.ArrayList;
  */
 public class FileBrowser {
     public JPanel mainPanel;
-    private JScrollPane scrollPane;
     public JPanel contentPanel;
     public JFrame frame;
     public FTPHandler FTP;
     public ArrayList<JPanel> panelList;
     public String initialDirectory;
-    private String baseTitle = "FTPHub";
-    private JLabel loadingLabel = new JLabel(new ImageIcon(getClass().getResource("/com/taylor/48px/ajax_loader_orange_64.gif")));
-    private FileListLoader FLL;
     public FileAndDirectoryManager fileAndDirectoryManager;
     public String currentDirectory;
+    private JScrollPane scrollPane;
+    private String baseTitle = "FTPHub";
+    private JLabel loadingLabel = new JLabel(new ImageIcon(getClass().getResource("/com/taylor/48px/ajax_loader_orange_64.gif")));
+
+    public FileBrowser(FTPHandler FTP) {
+        this.FTP = FTP;
+        if (FTP == null)
+            System.exit(1);
+
+        setLayout();
+    }
 
 
     public FileBrowser() {
-        new ConnectionUI();
-
-        frame = new JFrame(baseTitle);
         try {
-            FTP = new FTPHandler(this);
+            FTP = new FTPHandler();
         } catch (Exception e) {
             e.printStackTrace();
         }
-
-        if(FTP == null)
+        if (FTP == null)
             System.exit(1);
 
+        setLayout();
+    }
+
+    public void setLayout() {
+        frame = new JFrame(baseTitle);
         try {
             initialDirectory = FTP.getCurrentDirectory();
             frame.setTitle(baseTitle + " " + initialDirectory);
@@ -95,50 +100,34 @@ public class FileBrowser {
                 maybeRightMenu(e);
             }
         });
-
         frame.pack();
         frame.setVisible(true);
     }
 
-    public void maybeRightMenu(MouseEvent e){
-        if(e.isPopupTrigger()){
+    public void maybeRightMenu(MouseEvent e) {
+        if (e.isPopupTrigger()) {
             FileRightClickMenu menu = new FileRightClickMenu(fileAndDirectoryManager, currentDirectory);
             menu.show(e.getComponent(), e.getX(), e.getY());
         }
     }
 
-    public void listFiles(){
+    public void listFiles() {
         panelList.clear();
         contentPanel.removeAll();
 
         contentPanel.add(loadingLabel);
         contentPanel.updateUI();
 
-        FLL = new FileListLoader(FTP, fileAndDirectoryManager, currentDirectory.toString());
+        FileListLoader FLL = new FileListLoader(FTP, fileAndDirectoryManager, currentDirectory.toString(), this);
 
         Thread t = new Thread(FLL);
         t.start();
     }
 
-    public void changeDirectoryUp(){
-        try {
-            FTP.changeDirectoryUp();
-            frame.setTitle(baseTitle + " " + FTP.getCurrentDirectory());
-            currentDirectory = FTP.getCurrentDirectory();
-            listFiles();
-        } catch (FTPException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        } catch (FTPIllegalReplyException e) {
-            e.printStackTrace();
-        }
-    }
-
-    public void changeDir(String dir){
-            //FTP.changeDirectory(dir);
-            frame.setTitle(baseTitle + " " + dir);
-            currentDirectory = dir;
-            listFiles();
+    public void changeDir(String dir) {
+        //FTP.changeDirectory(dir);
+        frame.setTitle(baseTitle + " " + dir);
+        currentDirectory = dir;
+        listFiles();
     }
 }

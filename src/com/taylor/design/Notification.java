@@ -7,11 +7,12 @@ import java.util.ArrayList;
 /**
  * Created by tad on 12/9/2014.
  */
-public class Notification extends JFrame implements Runnable{
-    private  String title, description;
-    private  int timeout;
+public class Notification extends JFrame implements Runnable {
+    private String title, description;
+    private int timeout;
     private ArrayList<Object> objects;
-    public Notification(String title, String description, int timeout){
+
+    public Notification(String title, String description, int timeout) {
         this.title = title;
         this.description = description;
         this.timeout = timeout;
@@ -23,11 +24,12 @@ public class Notification extends JFrame implements Runnable{
         GraphicsDevice gd = ge.getDefaultScreenDevice();
         boolean isUniformTranslucencySupported =
                 gd.isWindowTranslucencySupported(GraphicsDevice.WindowTranslucency.TRANSLUCENT);
-        if(isUniformTranslucencySupported)
+        if (isUniformTranslucencySupported)
             this.setOpacity(0.75f);
 
     }
-    private void setLayout(){
+
+    private void setLayout() {
         JPanel mainPanel = new JPanel();
         mainPanel.setLayout(new BorderLayout());
         mainPanel.setBorder(BorderFactory.createDashedBorder(Color.gray));
@@ -76,8 +78,6 @@ public class Notification extends JFrame implements Runnable{
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-
-
 
 
         this.dispose();

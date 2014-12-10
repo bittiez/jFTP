@@ -13,7 +13,7 @@ public class Action {
     public FileObject fileObject;
     public String newDirectory;
 
-    public Action(ActionType _actionType){
+    public Action(ActionType _actionType) {
         actionType = _actionType;
     }
 
