@@ -12,8 +12,8 @@ public class FTPHandler {
 
     public FTPHandler(FileBrowser _GUI) throws FTPException, IOException, FTPIllegalReplyException {
         client = new FTPClient();
-        client.connect("ftp.zul.pw");
-        client.login("zul@uokiru.com", "pmy6vw2");
+        client.connect("jshare.ddns.net");
+        client.login("Tad", "ubt7smh8");
         GUI = _GUI;
     }
 

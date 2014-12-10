@@ -1,10 +1,14 @@
 package com.taylor.ActionQue;
 
+import com.taylor.design.Notification;
 import com.taylor.fileTransfer.FileDownload;
 import com.taylor.fileTransfer.UploadFile;
 import com.taylor.helper.FTPHandler;
 import com.taylor.manager.FileAndDirectoryManager;
+import it.sauronsoftware.ftp4j.FTPException;
+import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 /**
@@ -40,6 +44,18 @@ public class ActionQue implements Runnable{
                         }
                         fileAndDirectoryManager.unPause();
                     }
+                } else if(queItem.actionType == ActionType.DELETE_DIRECTORY) {
+                    if(!queItem.file.isEmpty() && !queItem.directory.isEmpty()){
+                        fileAndDirectoryManager.pauseManager();
+                        try {
+                            FTP.changeDirectory(queItem.directory);
+                            FTP.deleteDirectory(queItem.file);
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        System.out.println("Deleting directory: " + queItem.file);
+                        fileAndDirectoryManager.unPause();
+                    }
                 } else if(queItem.actionType == ActionType.RELOADDIRECTORY){
                     if(!queItem.directory.isEmpty()){
                         fileAndDirectoryManager.pauseManager();
@@ -63,6 +79,19 @@ public class ActionQue implements Runnable{
                         } catch (Exception e) {
                             e.printStackTrace();
                         }
+                    }
+                } else if(queItem.actionType == ActionType.NEWDIRECTORY){
+                    if(!queItem.directory.isEmpty() && !queItem.newDirectory.isEmpty()){
+                        fileAndDirectoryManager.pauseManager();
+                        try {
+                            FTP.changeDirectory(queItem.directory);
+                            FTP.createDirectory(queItem.newDirectory);
+                            System.out.println("Created new directory");
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
+                        fileAndDirectoryManager.unPause();
+                        new Notification("Folder created", queItem.newDirectory + " has been created!", 5);
                     }
                 }
 

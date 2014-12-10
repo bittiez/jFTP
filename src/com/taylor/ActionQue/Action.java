@@ -11,6 +11,7 @@ public class Action {
     public String file;
     public String localFile;
     public FileObject fileObject;
+    public String newDirectory;
 
     public Action(ActionType _actionType){
         actionType = _actionType;
@@ -26,6 +27,10 @@ public class Action {
 
     public void setFile(String file) {
         this.file = file;
+    }
+
+    public void setNewDirectory(String newDirectory) {
+        this.newDirectory = newDirectory;
     }
 
     public void setFileObject(FileObject fileObject) {

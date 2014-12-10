@@ -2,6 +2,7 @@ package com.taylor.design;
 
 import com.taylor.helper.FTPHandler;
 import com.taylor.helper.FileListLoader;
+import com.taylor.helper.FileRightClickMenu;
 import com.taylor.helper.ToTransferHandler;
 import com.taylor.manager.FileAndDirectoryManager;
 import it.sauronsoftware.ftp4j.FTPException;
@@ -10,6 +11,8 @@ import it.sauronsoftware.ftp4j.FTPIllegalReplyException;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.dnd.DropTarget;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 import java.io.IOException;
 import java.util.ArrayList;
 
@@ -32,14 +35,14 @@ public class FileBrowser {
 
 
     public FileBrowser() {
-        frame = new JFrame("jFTP File Browser");
+        new ConnectionUI();
 
+        frame = new JFrame(baseTitle);
         try {
             FTP = new FTPHandler(this);
         } catch (Exception e) {
             e.printStackTrace();
         }
-
 
         if(FTP == null)
             System.exit(1);
@@ -62,11 +65,6 @@ public class FileBrowser {
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         frame.setPreferredSize(new Dimension(750, 515));
         frame.setSize(frame.getPreferredSize());
-        //frame.setMinimumSize(frame.getSize());
-
-        //mainPanel
-        //--scrollPane
-        //   --contentPanel
 
         GridLayout GL = new GridLayout();
         GL.setColumns(3);
@@ -81,8 +79,32 @@ public class FileBrowser {
 
         listFiles();
 
+        contentPanel.addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                maybeRightMenu(e);
+            }
+
+            @Override
+            public void mousePressed(MouseEvent e) {
+                maybeRightMenu(e);
+            }
+
+            @Override
+            public void mouseReleased(MouseEvent e) {
+                maybeRightMenu(e);
+            }
+        });
+
         frame.pack();
         frame.setVisible(true);
+    }
+
+    public void maybeRightMenu(MouseEvent e){
+        if(e.isPopupTrigger()){
+            FileRightClickMenu menu = new FileRightClickMenu(fileAndDirectoryManager, currentDirectory);
+            menu.show(e.getComponent(), e.getX(), e.getY());
+        }
     }
 
     public void listFiles(){
