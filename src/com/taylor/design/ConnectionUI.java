@@ -56,6 +56,7 @@ public class ConnectionUI implements Runnable{
 
     public void connectButton() {
         if (checkFields()) {
+            status.setText("Attempting connection...");
             new Thread(this).start();
         }
     }
@@ -72,7 +73,8 @@ public class ConnectionUI implements Runnable{
 
     @Override
     public void run() {
-        status.setText("Attempting connection...");
+
+        boolean success = true;
         try {
             FTP = new FTPHandler();
             FTP.client = new FTPClient();
@@ -81,20 +83,25 @@ public class ConnectionUI implements Runnable{
         } catch (FTPException e) {
             e.printStackTrace();
             status.setText("Failed to connect..");
+            success = false;
         } catch (IOException e) {
             e.printStackTrace();
             status.setText("Failed to connect..");
+            success = false;
         } catch (FTPIllegalReplyException e) {
             e.printStackTrace();
             status.setText("Failed to connect..");
+            success = false;
         } finally {
-            status.setText("Connection successful..");
-            FileBrowser fb = new FileBrowser(FTP);
-            frame.dispose();
-            Preferences.userRoot().put("SERVER", address.getText());
-            Preferences.userRoot().put("PORT", port.getText());
-            Preferences.userRoot().put("USERNAME", username.getText());
-            Preferences.userRoot().put("PASSWORD", password.getText());
+            if(success) {
+                status.setText("Connection successful..");
+                FileBrowser fb = new FileBrowser(FTP);
+                frame.dispose();
+                Preferences.userRoot().put("SERVER", address.getText());
+                Preferences.userRoot().put("PORT", port.getText());
+                Preferences.userRoot().put("USERNAME", username.getText());
+                Preferences.userRoot().put("PASSWORD", password.getText());
+            }
         }
     }
 }
