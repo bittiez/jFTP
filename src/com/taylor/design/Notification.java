@@ -62,7 +62,9 @@ public class Notification extends JFrame implements Runnable{
                 (int) (gd.getDisplayMode().getWidth() - d.getWidth()) - 50,
                 (int) (gd.getDisplayMode().getHeight() - d.getHeight()) - 50);
 
+        setType(Type.UTILITY);
         pack();
+
         setVisible(true);
         new Thread(this).start();
     }

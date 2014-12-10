@@ -198,13 +198,21 @@ public class FileObject extends JPanel {
             action2.setDirectory(Directory);
             fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action);
             fileBrowser.fileAndDirectoryManager.actionQue.actions.add(action2);
+            new Notification("Deleting File", file.getName() + " will be deleted soon", 5);
         } else if(fileType == FTPFile.TYPE_DIRECTORY){
-
+            Action delete = new Action(ActionType.DELETE_DIRECTORY);
+            delete.setFile(file.getName());
+            delete.setDirectory(Directory);
+            Action reload = new Action(ActionType.RELOADDIRECTORY);
+            reload.setDirectory(Directory);
+            fileBrowser.fileAndDirectoryManager.actionQue.actions.add(delete);
+            fileBrowser.fileAndDirectoryManager.actionQue.actions.add(reload);
+            new Notification("Deleting Directory", file.getName() + " will be deleted soon", 5);
         }
         new Thread(fileBrowser.fileAndDirectoryManager.actionQue).start();
         fileBrowser.contentPanel.remove(this);
         fileBrowser.contentPanel.updateUI();
-        new Notification("Deleting File", file.getName() + " will be deleted soon", 5);
+
     }
 
 

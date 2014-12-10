@@ -19,36 +19,37 @@ public class FileAndDirectoryManager implements Runnable{
     private boolean paused = false;
     public boolean pause = false;
 
-    public boolean complete;
+    public boolean complete = true;
 
     public FileAndDirectoryManager(FTPHandler _FTP){
         FTP = _FTP;
         directories = new HashMap<String, FTPDirectory>();
-        complete = false;
         actionQue = new ActionQue(FTP, this);
     }
 
     public void pauseManager(){
-        pause = true;
-        System.out.println("Paused");
-        while(!paused) {
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+        if(!complete) {
+            pause = true;
+            System.out.println("Paused");
+            while (!paused) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
         }
     }
     public void unPause(){
-        pause = false;
-        System.out.println("Unpaused");
-        while(paused){
-            try {
-                Thread.sleep(1000);
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            pause = false;
+            System.out.println("Unpaused");
+            while (paused) {
+                try {
+                    Thread.sleep(1000);
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
-        }
     }
 
     public FTPFile[] GetFiles(String Directory){
@@ -58,12 +59,15 @@ public class FileAndDirectoryManager implements Runnable{
         {
             while(true) {
                 try {
-                    Thread.sleep(500);
+                    Thread.sleep(1000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
                 if(directories.containsKey(Directory))
                     return directories.get(Directory).files;
+                if(complete){
+                    reloadDirectory(Directory);
+                }
             }
 
         }
@@ -96,6 +100,9 @@ public class FileAndDirectoryManager implements Runnable{
 
     @Override
     public void run() {
+        if(!complete)
+            return;
+        complete = false;
         ArrayList<String> subDirectories = new ArrayList<String>();
         FTPFile[] files = null;
         String dir = "";
